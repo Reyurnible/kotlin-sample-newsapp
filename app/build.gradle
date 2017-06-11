@@ -1,6 +1,8 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
+def secretProps = loadSecretProperties()
+
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
@@ -11,6 +13,8 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        // Loading Api Key from secret.properties
+        buildConfigField("String", "API_KEY", "\"${secretProps.getProperty('NEW_API_KEY')}\"")
     }
     buildTypes {
         release {
@@ -58,6 +62,16 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
 }
-repositories {
-    mavenCentral()
+
+def loadSecretProperties() {
+    def props = new Properties()
+    // If you wanna build release apk, get secret properties
+    def secretPropsFile = project.rootProject.file('secret.properties')
+    if (secretPropsFile.exists()) {
+        props.load(secretPropsFile.newDataInputStream())
+    } else {
+        // Set Dummy Properties for Build
+        props['newsApiKey']='dummy'
+    }
+    return props
 }

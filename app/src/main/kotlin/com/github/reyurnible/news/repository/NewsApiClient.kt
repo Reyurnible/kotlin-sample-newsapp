@@ -1,5 +1,6 @@
 package com.github.reyurnible.news.repository
 
+import com.github.reyurnible.news.BuildConfig
 import com.google.gson.GsonBuilder
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import okhttp3.OkHttpClient
@@ -14,8 +15,7 @@ import retrofit2.converter.gson.GsonConverterFactory
  */
 object NewsApiClient {
     const val API_BASE_URL = "https://newsapi.org"
-    // TODO Please Replace Your API KEY
-    const val API_KEY = "a3e6ac56bd5b4678a81cdd139802b6b4"
+    const val API_KEY = BuildConfig.API_KEY
 
     private val retrofit: Retrofit = Retrofit.Builder()
             .baseUrl(API_BASE_URL)
