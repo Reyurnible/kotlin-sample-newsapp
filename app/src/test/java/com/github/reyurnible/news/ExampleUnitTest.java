@@ -1,4 +1,4 @@
-package com.reyurnible.nrews.makeupkotlin;
+package com.github.reyurnible.news;
 
 import org.junit.Test;
 

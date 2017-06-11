@@ -12,12 +12,20 @@ buildscript {
     ext {
         kotlinVersion = '1.1.2-4'
         ankoVersion = '0.10.1'
+        supportLibVersion = '25.1.1'
+        // RxJava
+        rxJavaVersion = '2.0.5'
+        rxAndroidVersion = '2.0.1'
+        rxLifecycleVersion = '2.1.0'
+        // Retrofit
+        retrofitVersion = '2.1.0'
+        okhttpVersion = '3.6.0'
     }
     repositories {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.3.0'
+        classpath 'com.android.tools.build:gradle:2.3.2'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
     }
 }
