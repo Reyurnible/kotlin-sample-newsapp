@@ -29,12 +29,26 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
+    // v4
+    compile "com.android.support:support-compat:$supportLibVersion"
+    compile "com.android.support:support-core-ui:$supportLibVersion"
+    compile "com.android.support:support-fragment:$supportLibVersion"
+    // v7
     compile "com.android.support:appcompat-v7:$supportLibVersion"
     compile "com.android.support:recyclerview-v7:$supportLibVersion"
+    compile "com.android.support:palette-v7:$supportLibVersion"
+    // Design
+    compile "com.android.support:design:$supportLibVersion"
     // Kotlin
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
     // Anko(View DSL for Kotlin)
-    compile "org.jetbrains.anko:anko-sdk15:$ankoVersion" // So here it's 15 too
+    compile "org.jetbrains.anko:anko:$ankoVersion"
+    compile "org.jetbrains.anko:anko-commons:$ankoVersion"
+    compile "org.jetbrains.anko:anko-support-v4-commons:$ankoVersion"
+    compile "org.jetbrains.anko:anko-appcompat-v7-commons:$ankoVersion"
+    // Anko Layouts
+    compile "org.jetbrains.anko:anko-sdk25:$ankoVersion" // So here it's 15 too
+    compile "org.jetbrains.anko:anko-support-v4:$ankoVersion"
     compile "org.jetbrains.anko:anko-appcompat-v7:$ankoVersion"
     compile "org.jetbrains.anko:anko-design:$ankoVersion"
     compile "org.jetbrains.anko:anko-recyclerview-v7:$ankoVersion"

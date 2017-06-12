@@ -1,10 +1,10 @@
-package com.github.reyurnible.news.component
+package com.github.reyurnible.news.component.scene.articles
 
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.Toolbar
 import android.view.View
-import com.github.reyurnible.news.SampleActivity
+import com.github.reyurnible.news.component.scene.articles.ArticlesActivity
 import org.jetbrains.anko.AnkoComponent
 import org.jetbrains.anko.AnkoContext
 import org.jetbrains.anko.appcompat.v7.toolbar
@@ -15,11 +15,11 @@ import kotlin.properties.Delegates
 /**
  * Sample Activity Component
  */
-class SampleActivityComponent : AnkoComponent<SampleActivity> {
+class ArticlesActivityComponent : AnkoComponent<ArticlesActivity> {
     var titleBar: Toolbar by Delegates.notNull()
     var recyclerView: RecyclerView by Delegates.notNull()
 
-    override fun createView(ui: AnkoContext<SampleActivity>): View = with(ui) {
+    override fun createView(ui: AnkoContext<ArticlesActivity>): View = with(ui) {
         verticalLayout {
             titleBar = toolbar {
 
