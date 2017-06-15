@@ -16,7 +16,7 @@ import org.jetbrains.anko.verticalLayout
 /**
  * Top Activity Component
  */
-class TopActivityComponent : AnkoComponent<TopActivity> {
+class TopActivityComponent : AnkoComponent<TopActivity>, TopView {
     var menuItemClickListener: ((MenuItem) -> Boolean)? = null
         set(value) {
             field = value
