@@ -1,11 +1,9 @@
-package com.github.reyurnible.news
+package com.github.reyurnible.news.component.viewholder
 
 import android.app.Activity
 import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
-import com.github.reyurnible.news.component.ArticleViewHolderComponent
-import com.github.reyurnible.news.component.SourceViewHolderComponent
-import com.github.reyurnible.news.entity.Article
+import com.github.reyurnible.news.component.viewholder.SourceViewHolderComponent
 import com.github.reyurnible.news.entity.Source
 import com.squareup.picasso.Picasso
 import org.jetbrains.anko.AnkoContext

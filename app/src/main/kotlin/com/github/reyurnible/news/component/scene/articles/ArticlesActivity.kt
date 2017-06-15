@@ -1,7 +1,7 @@
 package com.github.reyurnible.news.component.scene.articles
 
 import android.os.Bundle
-import com.github.reyurnible.news.SourceAdapter
+import com.github.reyurnible.news.component.viewholder.SourceAdapter
 import com.github.reyurnible.news.repository.NewsApiClient
 import com.github.reyurnible.news.repository.NewsRepository
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity

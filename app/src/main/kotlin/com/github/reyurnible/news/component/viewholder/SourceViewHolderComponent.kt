@@ -1,4 +1,4 @@
-package com.github.reyurnible.news.component
+package com.github.reyurnible.news.component.viewholder
 
 import android.view.Gravity
 import android.view.View
