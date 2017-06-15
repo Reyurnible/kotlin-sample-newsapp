@@ -5,6 +5,8 @@ import com.trello.rxlifecycle2.components.support.RxAppCompatActivity
 import org.jetbrains.anko.setContentView
 
 class TopActivity : RxAppCompatActivity() {
+    companion object;
+
     lateinit var component: TopActivityComponent
 
     override fun onCreate(savedInstanceState: Bundle?) {
