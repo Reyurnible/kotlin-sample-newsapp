@@ -13,7 +13,7 @@ import org.jetbrains.anko.verticalLayout
 import kotlin.properties.Delegates
 
 /**
- * Sample Activity Component
+ * Articles Component
  */
 class ArticlesActivityComponent : AnkoComponent<ArticlesActivity> {
     var titleBar: Toolbar by Delegates.notNull()

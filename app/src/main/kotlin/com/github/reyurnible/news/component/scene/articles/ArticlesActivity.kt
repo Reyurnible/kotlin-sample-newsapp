@@ -11,6 +11,9 @@ import io.reactivex.schedulers.Schedulers
 import org.jetbrains.anko.setContentView
 import kotlin.properties.Delegates
 
+/**
+ * Articles Scene
+ */
 class ArticlesActivity : RxAppCompatActivity() {
     // Adapter
     private var adapter: SourceAdapter by Delegates.notNull()
