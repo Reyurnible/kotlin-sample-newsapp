@@ -1,12 +1,21 @@
 package com.github.reyurnible.news.component.scene.top
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import com.github.reyurnible.news.R
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity
 import org.jetbrains.anko.setContentView
 
 class TopActivity : RxAppCompatActivity() {
-    companion object;
+    private object Key {
+        // Has no argument
+    }
+
+    companion object {
+        fun createIntent(context: Context): Intent =
+                Intent(context, TopActivity::class.java)
+    }
 
     lateinit var component: TopActivityComponent
 
