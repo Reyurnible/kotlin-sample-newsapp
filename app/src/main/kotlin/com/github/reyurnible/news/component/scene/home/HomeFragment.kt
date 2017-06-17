@@ -19,13 +19,14 @@ class HomeFragment : RxFragment() {
         fun createInstance(): HomeFragment = HomeFragment()
     }
 
-    private val component: HomeComponent = HomeComponent()
+    private val component: HomeFragmentComponent = HomeFragmentComponent()
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? =
-            component.createView(AnkoContext.Companion.create(activity, this))
+            component.createView(AnkoContext.Companion.create<HomeFragment>(activity, this))
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
     }
 
 

@@ -5,15 +5,16 @@ import android.view.View
 import org.jetbrains.anko.AnkoComponent
 import org.jetbrains.anko.AnkoContext
 import org.jetbrains.anko.recyclerview.v7.recyclerView
+import org.jetbrains.anko.support.v4.viewPager
 
 /**
  * Home Scene Component
  */
-class HomeComponent : AnkoComponent<HomeFragment>, HomeView {
+class HomeFragmentComponent : AnkoComponent<HomeFragment>, HomeView {
 
     override fun createView(ui: AnkoContext<HomeFragment>): View = with(ui) {
-        recyclerView {
-            layoutManager = LinearLayoutManager(ui.ctx)
+        viewPager {
+
         }
     }
 
