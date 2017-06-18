@@ -41,6 +41,8 @@ dependencies {
     compile "com.android.support:design:$supportLibVersion"
     // Kotlin
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
+    // Kotlin
+    compile "com.github.salomonbrys.kodein:kodein:$kodeinVersion"
     // Anko(View DSL for Kotlin)
     compile "org.jetbrains.anko:anko:$ankoVersion"
     compile "org.jetbrains.anko:anko-commons:$ankoVersion"

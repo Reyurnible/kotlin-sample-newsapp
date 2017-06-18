@@ -11,6 +11,7 @@ buildscript {
     // for Dependencies
     ext {
         kotlinVersion = '1.1.2-4'
+        kodeinVersion = '4.0.0'
         ankoVersion = '0.10.1'
         supportLibVersion = '25.3.1'
         // RxJava
