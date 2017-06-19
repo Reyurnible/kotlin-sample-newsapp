@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 
 def secretProps = loadSecretProperties()
 
@@ -39,9 +40,13 @@ dependencies {
     compile "com.android.support:palette-v7:$supportLibVersion"
     // Design
     compile "com.android.support:design:$supportLibVersion"
+    // Architecture Components
+    compile "android.arch.lifecycle:runtime:$archVersion"
+    compile "android.arch.lifecycle:extensions:$archVersion"
+    kapt "android.arch.lifecycle:compiler:$archVersion"
     // Kotlin
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
-    // Kotlin
+    // Kodein
     compile "com.github.salomonbrys.kodein:kodein:$kodeinVersion"
     // Anko(View DSL for Kotlin)
     compile "org.jetbrains.anko:anko:$ankoVersion"
@@ -69,6 +74,11 @@ dependencies {
     compile "com.trello.rxlifecycle2:rxlifecycle-components:$rxLifecycleVersion"
     compile "com.trello.rxlifecycle2:rxlifecycle-navi:$rxLifecycleVersion"
     compile "com.trello.rxlifecycle2:rxlifecycle-kotlin:$rxLifecycleVersion"
+    // Requery
+    compile "io.requery:requery:$requeryVersion"
+    compile "io.requery:requery-kotlin:$requeryVersion"
+    compile "io.requery:requery-android:$requeryVersion"
+    kapt "io.requery:requery-processor:$requeryVersion"
     // Picasso
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.jakewharton.picasso:picasso2-okhttp3-downloader:1.0.2'
