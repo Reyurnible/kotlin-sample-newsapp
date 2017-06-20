@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Spacing -->
+    <dimen name="margin_x0_5">4dp</dimen>
+    <dimen name="margin_x0_75">4dp</dimen>
+    <dimen name="margin">8dp</dimen>
+    <dimen name="margin_x1_5">12dp</dimen>
+    <dimen name="margin_x2_0">16dp</dimen>
+    <dimen name="margin_x3_0">24dp</dimen>
+    <!-- Size -->
+    <dimen name="size_x0_50">24dp</dimen>
+    <dimen name="size_x0_75">36dp</dimen>
+    <dimen name="size">48dp</dimen>
+    <dimen name="size_x1_25">64dp</dimen>
+    <dimen name="size_x2_0">96dp</dimen>
+</resources>
