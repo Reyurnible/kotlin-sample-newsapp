@@ -4,9 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.github.reyurnible.news.AppComponents
 import com.github.reyurnible.news.extension.applyArguments
 import com.github.reyurnible.news.repository.NewsApiClient
 import com.github.reyurnible.news.repository.NewsRepository
+import com.github.salomonbrys.kodein.Kodein
 import com.trello.rxlifecycle2.components.support.RxFragment
 import com.trello.rxlifecycle2.kotlin.bindToLifecycle
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -28,7 +30,7 @@ class ArticlesFragment : RxFragment() {
     }
 
     // Repository
-    private var newsRepository: NewsRepository = NewsRepository(NewsApiClient)
+    private var newsRepository: NewsRepository = AppComponents.bind()
 
     private val component: ArticlesFragmentComponent = ArticlesFragmentComponent()
 
