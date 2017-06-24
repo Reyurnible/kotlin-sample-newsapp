@@ -14,8 +14,9 @@ class HomePagerAdapter(
         var sources: List<Source>
 ) : FragmentPagerAdapter(fragmentManager) {
 
-    override fun getItem(position: Int): Fragment =
-            ArticlesFragment.createInstance(sources[position].id)
+    override fun getItem(position: Int): Fragment = ArticlesFragment.createInstance(sources[position].id)
 
     override fun getCount(): Int = sources.size
+
+    override fun getPageTitle(position: Int): CharSequence = sources[position].name
 }
