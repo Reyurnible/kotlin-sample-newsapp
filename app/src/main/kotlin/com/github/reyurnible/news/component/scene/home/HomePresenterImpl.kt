@@ -17,6 +17,7 @@ class HomePresenterImpl(
     init {
         // Observe parent lifecycle
         view.bindLifecycle(this)
+        view.sourceList = sceneDataHolder.sourceList.asObservable().map { it.toList() }
     }
 
     override fun onCreate() {

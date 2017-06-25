@@ -14,9 +14,8 @@ interface HomePresenter {
 }
 
 interface HomeView {
-    val sourceList: Observable<List<Source>>
+    var sourceList: Observable<List<Source>>
     fun bindLifecycle(observer: LifecycleObserver)
-    // TODO
     fun showError()
 }
 

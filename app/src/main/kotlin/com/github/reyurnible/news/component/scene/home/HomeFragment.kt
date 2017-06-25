@@ -6,6 +6,7 @@ import android.arch.lifecycle.LifecycleRegistryOwner
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -35,7 +36,7 @@ class HomeFragment : RxFragment(), HomeView, LifecycleRegistryOwner {
 
     private lateinit var presenter: HomePresenter
 
-    private val component: HomeFragmentComponent = HomeFragmentComponent()
+    private lateinit var component: HomeFragmentComponent
 
     override fun onAttach(context: Context?) {
         super.onAttach(context)
@@ -45,8 +46,10 @@ class HomeFragment : RxFragment(), HomeView, LifecycleRegistryOwner {
         )
     }
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? =
-            component.createView(AnkoContext.Companion.create<HomeFragment>(activity, this))
+    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        component = HomeFragmentComponent()
+        return component.createView(AnkoContext.create(activity, this))
+    }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -54,10 +57,9 @@ class HomeFragment : RxFragment(), HomeView, LifecycleRegistryOwner {
                 .observeOn(AndroidSchedulers.mainThread())
                 .bindToLifecycle(this)
                 .subscribe {
-                    component.pagerAdapter.apply {
-                        sources = it
-                        notifyDataSetChanged()
-                    }
+                    Log.d(HomeFragment::class.java.simpleName, "sourceList subscribe: ${it}")
+                    component.pagerAdapter.sources = it
+                    component.pagerAdapter.notifyDataSetChanged()
                 }
     }
 

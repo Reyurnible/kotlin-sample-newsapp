@@ -1,5 +1,10 @@
 package com.github.reyurnible.news.component.scene.home
 
+import android.content.Context
+import android.content.res.ColorStateList
+import android.graphics.Color
+import android.support.design.widget.TabLayout
+import android.support.v4.content.ContextCompat
 import android.view.View
 import com.github.reyurnible.news.R
 import org.jetbrains.anko.*
@@ -16,9 +21,11 @@ class HomeFragmentComponent : AnkoComponent<HomeFragment> {
         pagerAdapter = HomePagerAdapter(ui.owner.childFragmentManager, emptyList())
         verticalLayout {
             val tabLayout = tabLayout {
-
+                tabMode = TabLayout.MODE_SCROLLABLE
+                tabTextColors = ColorStateList.valueOf(Color.BLACK)
             }.lparams(matchParent, dimen(R.dimen.size))
             viewPager {
+                id = R.id.home_viewpager
                 adapter = pagerAdapter
             }.lparams(matchParent, 0, weight = 1F).apply {
                 tabLayout.setupWithViewPager(this, true)
