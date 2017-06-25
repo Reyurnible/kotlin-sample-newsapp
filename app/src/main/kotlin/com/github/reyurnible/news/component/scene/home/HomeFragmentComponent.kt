@@ -9,7 +9,7 @@ import org.jetbrains.anko.support.v4.viewPager
 /**
  * Home Scene Component
  */
-class HomeFragmentComponent : AnkoComponent<HomeFragment>, HomeView {
+class HomeFragmentComponent : AnkoComponent<HomeFragment> {
     lateinit var pagerAdapter: HomePagerAdapter
 
     override fun createView(ui: AnkoContext<HomeFragment>): View = with(ui) {
