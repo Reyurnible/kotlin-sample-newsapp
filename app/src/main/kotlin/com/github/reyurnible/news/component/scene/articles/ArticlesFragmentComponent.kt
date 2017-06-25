@@ -2,17 +2,12 @@ package com.github.reyurnible.news.component.scene.articles
 
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.support.v7.widget.Toolbar
 import android.view.View
-import com.github.reyurnible.news.component.scene.articles.ArticlesActivity
 import com.github.reyurnible.news.component.viewholder.ArticleAdapter
-import com.github.reyurnible.news.component.viewholder.SourceAdapter
 import org.jetbrains.anko.AnkoComponent
 import org.jetbrains.anko.AnkoContext
-import org.jetbrains.anko.appcompat.v7.toolbar
 import org.jetbrains.anko.recyclerview.v7.recyclerView
 import org.jetbrains.anko.verticalLayout
-import kotlin.properties.Delegates
 
 /**
  * Articles Component
@@ -32,7 +27,7 @@ class ArticlesFragmentComponent(
         verticalLayout {
             recyclerView {
                 adapter = this@ArticlesFragmentComponent.adapter
-                layoutManager = LinearLayoutManager(ui.ctx, LinearLayoutManager.HORIZONTAL, false)
+                layoutManager = LinearLayoutManager(ui.ctx)
                 addOnScrollListener(object : RecyclerView.OnScrollListener() {
                     override fun onScrollStateChanged(recyclerView: RecyclerView?, newState: Int) {
                         recyclerView ?: return
