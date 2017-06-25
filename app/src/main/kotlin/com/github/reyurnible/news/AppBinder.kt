@@ -8,9 +8,9 @@ import com.github.salomonbrys.kodein.generic
 import com.github.salomonbrys.kodein.singleton
 
 /**
- * Application DI Component
+ * Application DI Binder
  */
-object AppComponents {
+object AppBinder {
 
     inline fun <reified T : Any> bind(tag: Any? = null) = kodein.Instance<T>(generic(), tag)
 
