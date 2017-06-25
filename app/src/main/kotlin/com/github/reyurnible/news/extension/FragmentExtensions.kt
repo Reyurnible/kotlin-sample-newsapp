@@ -7,6 +7,6 @@ import android.support.v4.app.Fragment
  * Extensions for Fragment
  */
 inline fun <F : Fragment> F.applyArguments(initialize: Bundle.() -> Unit): F {
-    arguments.initialize()
+    arguments = Bundle().apply { initialize() }
     return this
 }
