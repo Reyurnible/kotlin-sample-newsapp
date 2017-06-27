@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
 import com.github.reyurnible.news.component.viewholder.SourceViewHolderComponent
 import com.github.reyurnible.news.entity.Source
+import com.github.reyurnible.news.extension.load
 import com.squareup.picasso.Picasso
 import org.jetbrains.anko.AnkoContext
 import java.util.*
@@ -38,7 +39,7 @@ class SourceAdapter(
 
         private fun bindSource(value: Source?) {
             value ?: return
-            Picasso.with(activity).load(value.logoUrls?.small).into(component.logoImage)
+            component.logoImage.load(value.logoUrls?.small)
             component.nameText.text = value.name
             component.descriptionText.text = value.description
         }
