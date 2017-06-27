@@ -9,19 +9,16 @@ import io.reactivex.subjects.BehaviorSubject
 class Variable<T> private constructor(defaultValue: T?) {
     companion object {
         fun <T> create(): Variable<T> = Variable(null)
-        fun <T> createDefault(value: T): Variable<T> = createDefault(value)
+        fun <T> createDefault(value: T): Variable<T> = Variable(value)
     }
 
     // Call onNext is toSerialized()
     val isAsyncEmit: Boolean = true
     // Value holder
-    private val subject: BehaviorSubject<T>
-
-    init {
-        subject = defaultValue?.let {
-            BehaviorSubject.createDefault(it)
-        } ?: BehaviorSubject.create()
-    }
+    private val subject: BehaviorSubject<T> =
+            defaultValue?.let {
+                BehaviorSubject.createDefault(it)
+            } ?: BehaviorSubject.create()
 
     var value: T?
         set(value) {

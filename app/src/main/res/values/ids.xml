@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="layout_container" type="id" />
+    <!-- Home -->
+    <item name="home_viewpager" type="id" />
+</resources>
