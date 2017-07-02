@@ -1,30 +1,42 @@
 package com.github.reyurnible.news.component.scene.sources
 
+import android.support.v7.widget.GridLayoutManager
 import android.view.View
-import com.github.reyurnible.news.R
-import org.jetbrains.anko.*
-import org.jetbrains.anko.design.tabLayout
-import org.jetbrains.anko.support.v4.viewPager
+import com.github.reyurnible.news.component.viewholder.SourceAdapter
+import com.github.reyurnible.news.extension.addEndScrollListener
+import org.jetbrains.anko.AnkoComponent
+import org.jetbrains.anko.AnkoContext
+import org.jetbrains.anko.recyclerview.v7.recyclerView
+import org.jetbrains.anko.verticalLayout
 
 /**
  * Home Scene Component
  */
-class SourcesFragmentComponent : AnkoComponent<HomeFragment>, HomeView {
-    lateinit var pagerAdapter: SourcesPagerAdapter
+class SourcesFragmentComponent(
+        var listener: SourcesFragmentComponentListener? = null
+) : AnkoComponent<SourcesFragment> {
+    companion object {
+        const val GRID_COLUMNS = 3
+        const val OFFSET_PAGE_REACH = 2
+    }
 
-    override fun createView(ui: AnkoContext<HomeFragment>): View = with(ui) {
-        pagerAdapter = SourcesPagerAdapter(ui.owner.childFragmentManager, emptyList())
+    lateinit var adapter: SourceAdapter
+
+    override fun createView(ui: AnkoContext<SourcesFragment>): View = with(ui) {
+        adapter = SourceAdapter(ui.ctx)
         verticalLayout {
-            val tabLayout = tabLayout {
-
-            }.lparams(matchParent, dimen(R.dimen.size))
-            viewPager {
-                adapter = pagerAdapter
-            }.lparams(matchParent, 0, weight = 1F).apply {
-                tabLayout.setupWithViewPager(this, true)
+            recyclerView {
+                adapter = this@SourcesFragmentComponent.adapter
+                layoutManager = GridLayoutManager(ui.ctx, GRID_COLUMNS)
+                addEndScrollListener {
+                    listener?.onScrollReached(it.layoutManager.itemCount)
+                }
             }
         }
     }
 
+    interface SourcesFragmentComponentListener {
+        fun onScrollReached(count: Int)
+    }
 
 }

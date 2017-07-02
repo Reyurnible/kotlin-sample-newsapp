@@ -16,12 +16,14 @@ import org.jetbrains.anko.AnkoContext
 /**
  * Articles Scene
  */
-class ArticlesFragment : RxFragment() {
+class ArticlesFragment : RxFragment(), ArticlesFragmentComponent.ArticlesFragmentComponentListener {
     private object Key {
+
         const val sourceId = "sourceId"
     }
 
     companion object {
+
         fun createInstance(sourceId: String): ArticlesFragment = ArticlesFragment().applyArguments {
             putString(Key.sourceId, sourceId)
         }
@@ -33,7 +35,7 @@ class ArticlesFragment : RxFragment() {
     private val component: ArticlesFragmentComponent = ArticlesFragmentComponent()
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? =
-            component.createView(AnkoContext.Companion.create<ArticlesFragment>(activity, this))
+            component.createView(AnkoContext.create(activity, this))
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -49,5 +51,9 @@ class ArticlesFragment : RxFragment() {
                 }, {
                     it.printStackTrace()
                 })
+    }
+
+    override fun onScrollReached(count: Int) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 }

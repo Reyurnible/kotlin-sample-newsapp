@@ -13,7 +13,7 @@ import org.jetbrains.anko.verticalLayout
  * Articles Component
  */
 class ArticlesFragmentComponent(
-        var listener: ArticlesFragmentComponent? = null
+        var listener: ArticlesFragmentComponentListener? = null
 ) : AnkoComponent<ArticlesFragment> {
     companion object {
         const val OFFSET_PAGE_REACH = 2
@@ -46,7 +46,7 @@ class ArticlesFragmentComponent(
         }
     }
 
-    interface ArticlesFragmentComponent {
+    interface ArticlesFragmentComponentListener {
         fun onScrollReached(count: Int)
     }
 

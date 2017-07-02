@@ -33,10 +33,8 @@ class HomeFragment : RxFragment(), HomeView, LifecycleRegistryOwner {
     override lateinit var sourceList: Observable<List<Source>>
 
     private val registry = LifecycleRegistry(this)
-
     private lateinit var presenter: HomePresenter
-
-    private lateinit var component: HomeFragmentComponent
+    private val component: HomeFragmentComponent = HomeFragmentComponent()
 
     override fun onAttach(context: Context?) {
         super.onAttach(context)
@@ -46,10 +44,8 @@ class HomeFragment : RxFragment(), HomeView, LifecycleRegistryOwner {
         )
     }
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        component = HomeFragmentComponent()
-        return component.createView(AnkoContext.create(activity, this))
-    }
+    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View =
+            component.createView(AnkoContext.create(activity, this))
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
