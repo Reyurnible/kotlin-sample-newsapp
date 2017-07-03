@@ -2,6 +2,7 @@ package com.github.reyurnible.news.component.scene.sources
 
 import com.github.reyurnible.news.AppBinder
 import com.github.reyurnible.news.component.scene.RxLifecycleObserver
+import com.github.reyurnible.news.entity.Source
 import com.github.reyurnible.news.repository.NewsRepository
 import com.trello.rxlifecycle2.kotlin.bindToLifecycle
 
@@ -12,6 +13,7 @@ class SourcesPresenterImpl(
         private val view: SourcesView,
         private val sceneDataHolder: SourceSceneDataHolder
 ) : RxLifecycleObserver(), SourcesPresenter {
+
     private var newsRepository: NewsRepository = AppBinder.bind()
 
     init {
@@ -29,6 +31,10 @@ class SourcesPresenterImpl(
                 }, {
 
                 })
+    }
+
+    override fun onClickSource(source: Source) {
+        view.moveToArticles(source)
     }
 
 }

@@ -72,5 +72,8 @@ class SourcesFragment : RxFragment(), SourcesView, LifecycleRegistryOwner, Sourc
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
+    override fun moveToArticles(source: Source) {
+
+    }
 
 }

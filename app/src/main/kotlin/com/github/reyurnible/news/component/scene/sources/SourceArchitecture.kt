@@ -10,13 +10,16 @@ import io.reactivex.Observable
  * Sources Architecture
  */
 interface SourcesPresenter {
-
+    fun onClickSource(source: Source)
 }
 
 interface SourcesView {
     var sourceList: Observable<List<Source>>
+
     fun bindLifecycle(observer: LifecycleObserver)
     fun showError()
+
+    fun moveToArticles(source: Source)
 }
 
 // Survive Scene Data
