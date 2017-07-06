@@ -31,7 +31,9 @@ fun ImageView.load(path: String?,
                    priority: Picasso.Priority = DEFAULT_PRIORITY,
                    onSuccessScaleType: ImageView.ScaleType? = null
 ) {
-    path ?: return
+    if (path.isNullOrBlank()) {
+        return
+    }
     Picasso.with(this.context).load(path).loadSettings(this, placeHolder, error, priority, onSuccessScaleType)
 }
 
