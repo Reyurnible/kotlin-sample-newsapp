@@ -1,4 +1,4 @@
-package com.github.reyurnible.news.repository
+package com.github.reyurnible.news.source.remote
 
 import com.github.reyurnible.news.BuildConfig
 import com.google.gson.GsonBuilder

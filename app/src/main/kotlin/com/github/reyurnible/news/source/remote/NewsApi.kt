@@ -1,8 +1,7 @@
-package com.github.reyurnible.news.repository
+package com.github.reyurnible.news.source.remote
 
-import com.github.reyurnible.news.repository.response.GetArticlesResponse
-import com.github.reyurnible.news.repository.response.GetSourcesResponse
-import io.reactivex.Observable
+import com.github.reyurnible.news.source.remote.response.GetArticlesResponse
+import com.github.reyurnible.news.source.remote.response.GetSourcesResponse
 import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Query

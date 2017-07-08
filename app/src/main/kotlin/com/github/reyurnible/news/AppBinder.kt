@@ -1,6 +1,6 @@
 package com.github.reyurnible.news
 
-import com.github.reyurnible.news.repository.NewsApiClient
+import com.github.reyurnible.news.source.remote.NewsApiClient
 import com.github.reyurnible.news.repository.NewsRepository
 import com.github.salomonbrys.kodein.Kodein
 import com.github.salomonbrys.kodein.bind

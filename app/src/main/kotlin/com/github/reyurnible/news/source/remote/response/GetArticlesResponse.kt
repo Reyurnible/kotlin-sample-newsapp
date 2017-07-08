@@ -1,4 +1,4 @@
-package com.github.reyurnible.news.repository.response
+package com.github.reyurnible.news.source.remote.response
 
 import com.github.reyurnible.news.entity.Article
 

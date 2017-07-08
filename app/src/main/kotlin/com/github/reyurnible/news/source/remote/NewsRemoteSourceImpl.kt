@@ -1,33 +1,32 @@
-package com.github.reyurnible.news.repository
+package com.github.reyurnible.news.source.remote
 
 import com.github.reyurnible.news.entity.Article
 import com.github.reyurnible.news.entity.ArticleSource
-import com.github.reyurnible.news.source.remote.NewsApiClient
 import com.github.reyurnible.news.source.remote.response.GetArticlesResponse
 import com.github.reyurnible.news.source.remote.response.GetSourcesResponse
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
 
 /**
- * News Repository
+ * News Sources Impl
  */
-class NewsRepository(private val apiClient: NewsApiClient) {
+class NewsRemoteSourceImpl(private val newsApi: NewsApi) : NewsRemoteSource {
 
-    fun getArticles(
+    override fun getArticles(
             source: String,
-            sortBy: String? = null
+            sortBy: String?
     ): Single<List<Article>> =
-            apiClient.newsApi
-                    .getArticles(source, apiClient.API_KEY, sortBy)
+            newsApi
+                    .getArticles(source, NewsApiClient.API_KEY, sortBy)
                     .map(GetArticlesResponse::articles)
                     .subscribeOn(Schedulers.io())
 
-    fun getSources(
-            category: String? = null,
-            language: String? = null,
-            country: String? = null
+    override fun getSources(
+            category: String?,
+            language: String?,
+            country: String?
     ): Single<List<ArticleSource>> =
-            apiClient.newsApi
+            newsApi
                     .getSources(category, language, country)
                     .map(GetSourcesResponse::sources)
                     .subscribeOn(Schedulers.io())
