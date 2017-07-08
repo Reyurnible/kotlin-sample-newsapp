@@ -9,20 +9,20 @@ import io.reactivex.Observable
 /**
  * Sources Architecture
  */
-interface SourcesPresenter {
+interface ArticleSourcesPresenter {
     fun onClickSource(source: ArticleSource)
+
+    // Survive Scene Data
+    data class ArticleSourceSceneDataHolder(
+            val articleSourceList: Variable<MutableList<ArticleSource>> = Variable.createDefault(mutableListOf())
+    ) : ViewModel()
 }
 
-interface SourcesView {
-    var sourceList: Observable<List<ArticleSource>>
+interface ArticleSourcesView {
+    var articleSourceList: Observable<List<ArticleSource>>
 
     fun bindLifecycle(observer: LifecycleObserver)
     fun showError()
 
     fun moveToArticles(source: ArticleSource)
-}
-
-// Survive Scene Data
-class SourceSceneDataHolder : ViewModel() {
-    val sourceList: Variable<MutableList<ArticleSource>> = Variable.createDefault(mutableListOf())
 }

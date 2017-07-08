@@ -19,26 +19,26 @@ import org.jetbrains.anko.AnkoContext
 /**
  * Sources Scene
  */
-class ArticleSourcesFragment : RxFragment(), SourcesView, LifecycleRegistryOwner, ArticleSourcesFragmentComponent.SourcesFragmentComponentListener {
+class ArticleArticleSourcesFragment : RxFragment(), ArticleSourcesView, LifecycleRegistryOwner, ArticleSourcesFragmentComponent.SourcesFragmentComponentListener {
     private object Key {
 
     }
 
     companion object {
-        fun createInstance(): ArticleSourcesFragment = ArticleSourcesFragment()
+        fun createInstance(): ArticleArticleSourcesFragment = ArticleArticleSourcesFragment()
     }
 
-    override lateinit var sourceList: Observable<List<ArticleSource>>
+    override lateinit var articleSourceList: Observable<List<ArticleSource>>
 
     private val registry = LifecycleRegistry(this)
-    private lateinit var presenter: SourcesPresenter
+    private lateinit var presenterArticle: ArticleSourcesPresenter
     private val component: ArticleSourcesFragmentComponent = ArticleSourcesFragmentComponent(this)
 
     override fun onAttach(context: Context?) {
         super.onAttach(context)
-        presenter = ArticleSourcesPresenterImpl(
+        presenterArticle = ArticleSourcesPresenterImpl(
                 view = this,
-                sceneDataHolder = ViewModelProviders.of(this).get(SourceSceneDataHolder::class.java)
+                sceneDataHolder = ViewModelProviders.of(this).get(ArticleSourcesPresenter.ArticleSourceSceneDataHolder::class.java)
         )
     }
 
@@ -47,7 +47,7 @@ class ArticleSourcesFragment : RxFragment(), SourcesView, LifecycleRegistryOwner
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        sourceList
+        articleSourceList
                 .observeOn(AndroidSchedulers.mainThread())
                 .bindToLifecycle(this)
                 .subscribe {

@@ -10,16 +10,16 @@ import com.trello.rxlifecycle2.kotlin.bindToLifecycle
  * Sources Presenter Impl
  */
 class ArticleSourcesPresenterImpl(
-        private val view: SourcesView,
-        private val sceneDataHolder: SourceSceneDataHolder
-) : RxLifecycleObserver(), SourcesPresenter {
+        private val view: ArticleSourcesView,
+        private val sceneDataHolder: ArticleSourcesPresenter.ArticleSourceSceneDataHolder
+) : RxLifecycleObserver(), ArticleSourcesPresenter {
 
     private var newsRepository: NewsRepository = AppBinder.bind()
 
     init {
         // Observe parent lifecycle
         view.bindLifecycle(this)
-        view.sourceList = sceneDataHolder.sourceList.asObservable().map { it.toList() }
+        view.articleSourceList = sceneDataHolder.articleSourceList.asObservable().map { it.toList() }
     }
 
     override fun onCreate() {
@@ -27,7 +27,7 @@ class ArticleSourcesPresenterImpl(
         newsRepository.getSources()
                 .bindToLifecycle(this)
                 .subscribe({
-                    sceneDataHolder.sourceList.value = it.toMutableList()
+                    sceneDataHolder.articleSourceList.value = it.toMutableList()
                 }, {
 
                 })
