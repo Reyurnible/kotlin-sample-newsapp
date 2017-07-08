@@ -38,7 +38,7 @@ class FavoritesFragment : RxFragment(), FavoritesView, LifecycleRegistryOwner, F
         super.onAttach(context)
         presenter = FavoritesPresenterImpl(
                 view = this,
-                sceneDataHolder = ViewModelProviders.of(this).get(SourceSceneDataHolder::class.java)
+                sceneDataHolder = ViewModelProviders.of(this).get(FavoritesPresenter.FavoriteSceneDataHolder::class.java)
         )
     }
 

@@ -11,6 +11,11 @@ import io.reactivex.Observable
  */
 interface FavoritesPresenter {
     fun onClickSource(source: ArticleSource)
+
+    // Survive Scene Data
+    class FavoriteSceneDataHolder : ViewModel() {
+        val sourceList: Variable<MutableList<ArticleSource>> = Variable.createDefault(mutableListOf())
+    }
 }
 
 interface FavoritesView {
@@ -20,9 +25,4 @@ interface FavoritesView {
     fun showError()
 
     fun moveToArticles(source: ArticleSource)
-}
-
-// Survive Scene Data
-class SourceSceneDataHolder : ViewModel() {
-    val sourceList: Variable<MutableList<ArticleSource>> = Variable.createDefault(mutableListOf())
 }
