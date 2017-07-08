@@ -1,10 +1,9 @@
 package com.github.reyurnible.news.component.viewholder
 
-import android.view.Gravity
+import android.text.TextUtils
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.TextView
 import org.jetbrains.anko.*
 import kotlin.properties.Delegates
@@ -20,28 +19,17 @@ class SourceViewHolderComponent : AnkoComponent<ViewGroup> {
     override fun createView(ui: AnkoContext<ViewGroup>): View = with(ui) {
         verticalLayout {
             logoImage = imageView {
-                layoutParams = LinearLayout.LayoutParams(
-                        dip(160),
-                        dip(160)
-                ).apply {
-                    this.gravity = Gravity.CENTER_HORIZONTAL
-                }
                 scaleType = ImageView.ScaleType.FIT_CENTER
-            }
+                adjustViewBounds = true
+            }.lparams(matchParent, wrapContent)
             nameText = textView {
-                layoutParams = LinearLayout.LayoutParams(
-                        LinearLayout.LayoutParams.MATCH_PARENT,
-                        LinearLayout.LayoutParams.WRAP_CONTENT
-                )
                 text = "Name"
-            }
+            }.lparams(matchParent, wrapContent)
             descriptionText = textView {
-                layoutParams = LinearLayout.LayoutParams(
-                        LinearLayout.LayoutParams.MATCH_PARENT,
-                        LinearLayout.LayoutParams.WRAP_CONTENT
-                )
                 text = "Description"
-            }
+                maxLines = 3
+                ellipsize = TextUtils.TruncateAt.END
+            }.lparams(matchParent, wrapContent)
         }
     }
 }
