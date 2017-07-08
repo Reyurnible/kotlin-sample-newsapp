@@ -2,6 +2,7 @@ package com.github.reyurnible.news.source.remote
 
 import com.github.reyurnible.news.entity.Article
 import com.github.reyurnible.news.entity.ArticleSource
+import com.github.reyurnible.news.source.NewsRemoteSource
 import com.github.reyurnible.news.source.remote.response.GetArticlesResponse
 import com.github.reyurnible.news.source.remote.response.GetSourcesResponse
 import io.reactivex.Single
