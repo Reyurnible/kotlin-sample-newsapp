@@ -10,7 +10,7 @@ import com.trello.rxlifecycle2.kotlin.bindToLifecycle
  */
 class HomePresenterImpl(
         private val view: HomeView,
-        private val sceneDataHolder: HomeSceneDataHolder
+        private val sceneDataHolder: HomePresenter.HomeSceneDataHolder
 ) : RxLifecycleObserver(), HomePresenter {
     private var newsRepository: NewsRepository = AppBinder.bind()
 

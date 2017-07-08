@@ -10,16 +10,14 @@ import io.reactivex.Observable
  * Home Architecture
  */
 interface HomePresenter {
-
+    // Survive Scene Data
+    class HomeSceneDataHolder : ViewModel() {
+        val sourceList: Variable<MutableList<ArticleSource>> = Variable.createDefault(mutableListOf())
+    }
 }
 
 interface HomeView {
     var sourceList: Observable<List<ArticleSource>>
     fun bindLifecycle(observer: LifecycleObserver)
     fun showError()
-}
-
-// Survive Scene Data
-class HomeSceneDataHolder : ViewModel() {
-    val sourceList: Variable<MutableList<ArticleSource>> = Variable.createDefault(mutableListOf())
 }

@@ -40,7 +40,7 @@ class HomeFragment : RxFragment(), HomeView, LifecycleRegistryOwner {
         super.onAttach(context)
         presenter = HomePresenterImpl(
                 view = this,
-                sceneDataHolder = ViewModelProviders.of(this).get(HomeSceneDataHolder::class.java)
+                sceneDataHolder = ViewModelProviders.of(this).get(HomePresenter.HomeSceneDataHolder::class.java)
         )
     }
 
@@ -53,7 +53,7 @@ class HomeFragment : RxFragment(), HomeView, LifecycleRegistryOwner {
                 .observeOn(AndroidSchedulers.mainThread())
                 .bindToLifecycle(this)
                 .subscribe {
-                    Log.d(HomeFragment::class.java.simpleName, "sourceList subscribe: ${it}")
+                    Log.d(HomeFragment::class.java.simpleName, "articleSourceList subscribe: ${it}")
                     component.pagerAdapter.sources = it
                     component.pagerAdapter.notifyDataSetChanged()
                 }
