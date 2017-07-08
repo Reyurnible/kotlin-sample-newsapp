@@ -1,18 +1,18 @@
-package com.github.reyurnible.news.component.scene.sources
+package com.github.reyurnible.news.component.scene.favorites
 
 import com.github.reyurnible.news.AppBinder
 import com.github.reyurnible.news.component.scene.RxLifecycleObserver
-import com.github.reyurnible.news.entity.Source
+import com.github.reyurnible.news.entity.ArticleSource
 import com.github.reyurnible.news.repository.NewsRepository
 import com.trello.rxlifecycle2.kotlin.bindToLifecycle
 
 /**
- * Sources Presenter Impl
+ * Favorite Articles Presenter Impl
  */
-class SourcesPresenterImpl(
-        private val view: SourcesView,
+class FavoritesPresenterImpl(
+        private val view: FavoritesView,
         private val sceneDataHolder: SourceSceneDataHolder
-) : RxLifecycleObserver(), SourcesPresenter {
+) : RxLifecycleObserver(), FavoritesPresenter {
 
     private var newsRepository: NewsRepository = AppBinder.bind()
 
@@ -33,7 +33,7 @@ class SourcesPresenterImpl(
                 })
     }
 
-    override fun onClickSource(source: Source) {
+    override fun onClickSource(source: ArticleSource) {
         view.moveToArticles(source)
     }
 

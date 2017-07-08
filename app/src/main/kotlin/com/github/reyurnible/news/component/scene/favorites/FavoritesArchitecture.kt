@@ -1,4 +1,4 @@
-package com.github.reyurnible.news.component.scene.home
+package com.github.reyurnible.news.component.scene.favorites
 
 import android.arch.lifecycle.LifecycleObserver
 import android.arch.lifecycle.ViewModel
@@ -7,19 +7,22 @@ import com.github.reyurnible.news.extension.Variable
 import io.reactivex.Observable
 
 /**
- * Home Architecture
+ * Favorite Articles Architecture
  */
-interface HomePresenter {
-
+interface FavoritesPresenter {
+    fun onClickSource(source: ArticleSource)
 }
 
-interface HomeView {
+interface FavoritesView {
     var sourceList: Observable<List<ArticleSource>>
+
     fun bindLifecycle(observer: LifecycleObserver)
     fun showError()
+
+    fun moveToArticles(source: ArticleSource)
 }
 
 // Survive Scene Data
-class HomeSceneDataHolder : ViewModel() {
+class SourceSceneDataHolder : ViewModel() {
     val sourceList: Variable<MutableList<ArticleSource>> = Variable.createDefault(mutableListOf())
 }

@@ -11,7 +11,7 @@ import kotlin.properties.Delegates
 /**
  * SourceAdapter ViewHolder Component
  */
-class SourceViewHolderComponent : AnkoComponent<ViewGroup> {
+class ArticleSourceViewHolderComponent : AnkoComponent<ViewGroup> {
     var logoImage: ImageView by Delegates.notNull()
     var nameText: TextView by Delegates.notNull()
     var descriptionText: TextView by Delegates.notNull()

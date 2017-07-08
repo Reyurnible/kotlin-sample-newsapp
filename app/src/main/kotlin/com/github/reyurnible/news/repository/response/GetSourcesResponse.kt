@@ -1,6 +1,6 @@
 package com.github.reyurnible.news.repository.response
 
-import com.github.reyurnible.news.entity.Source
+import com.github.reyurnible.news.entity.ArticleSource
 
 /**
  * Get Sources Request Response
@@ -8,5 +8,5 @@ import com.github.reyurnible.news.entity.Source
  */
 data class GetSourcesResponse(
         val status: String,
-        val sources: List<Source>
+        val sources: List<ArticleSource>
 )

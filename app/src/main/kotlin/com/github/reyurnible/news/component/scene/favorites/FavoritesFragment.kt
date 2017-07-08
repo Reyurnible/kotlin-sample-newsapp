@@ -1,4 +1,4 @@
-package com.github.reyurnible.news.component.scene.sources
+package com.github.reyurnible.news.component.scene.favorites
 
 import android.arch.lifecycle.LifecycleObserver
 import android.arch.lifecycle.LifecycleRegistry
@@ -9,35 +9,34 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.github.reyurnible.news.entity.Source
+import com.github.reyurnible.news.entity.ArticleSource
 import com.trello.rxlifecycle2.components.support.RxFragment
 import com.trello.rxlifecycle2.kotlin.bindToLifecycle
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import org.jetbrains.anko.AnkoContext
-import java.util.ArrayList
 
 /**
- * Sources Scene
+ * Favorite Articles Scene
  */
-class SourcesFragment : RxFragment(), SourcesView, LifecycleRegistryOwner, SourcesFragmentComponent.SourcesFragmentComponentListener {
+class FavoritesFragment : RxFragment(), FavoritesView, LifecycleRegistryOwner, FavoritesFragmentComponent.SourcesFragmentComponentListener {
     private object Key {
 
     }
 
     companion object {
-        fun createInstance(): SourcesFragment = SourcesFragment()
+        fun createInstance(): FavoritesFragment = FavoritesFragment()
     }
 
-    override lateinit var sourceList: Observable<List<Source>>
+    override lateinit var sourceList: Observable<List<ArticleSource>>
 
     private val registry = LifecycleRegistry(this)
-    private lateinit var presenter: SourcesPresenter
-    private val component: SourcesFragmentComponent = SourcesFragmentComponent(this)
+    private lateinit var presenter: FavoritesPresenter
+    private val component: FavoritesFragmentComponent = FavoritesFragmentComponent(this)
 
     override fun onAttach(context: Context?) {
         super.onAttach(context)
-        presenter = SourcesPresenterImpl(
+        presenter = FavoritesPresenterImpl(
                 view = this,
                 sceneDataHolder = ViewModelProviders.of(this).get(SourceSceneDataHolder::class.java)
         )
@@ -72,7 +71,7 @@ class SourcesFragment : RxFragment(), SourcesView, LifecycleRegistryOwner, Sourc
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun moveToArticles(source: Source) {
+    override fun moveToArticles(source: ArticleSource) {
 
     }
 

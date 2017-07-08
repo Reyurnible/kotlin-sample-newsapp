@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 /**
  * Article Source
  */
-data class Source(
+data class ArticleSource(
         val id: String,
         val name: String,
         val description: String?,

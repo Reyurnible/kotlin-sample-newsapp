@@ -3,38 +3,38 @@ package com.github.reyurnible.news.component.viewholder
 import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
-import com.github.reyurnible.news.entity.Source
+import com.github.reyurnible.news.entity.ArticleSource
 import com.github.reyurnible.news.extension.load
 import org.jetbrains.anko.AnkoContext
 
 /**
  * Source Adapter
  */
-class SourceAdapter(
+class ArticleSourceAdapter(
         private val context: Context,
-        val sources: MutableList<Source> = mutableListOf()
-) : RecyclerView.Adapter<SourceAdapter.ViewHolder>() {
+        val sources: MutableList<ArticleSource> = mutableListOf()
+) : RecyclerView.Adapter<ArticleSourceAdapter.ViewHolder>() {
 
     override fun getItemCount(): Int = sources.size
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder? =
-            ViewHolder(SourceViewHolderComponent(), AnkoContext.create(context, parent, false))
+            ViewHolder(ArticleSourceViewHolderComponent(), AnkoContext.create(context, parent, false))
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.source = sources[position]
     }
 
     inner class ViewHolder(
-            private val component: SourceViewHolderComponent,
+            private val component: ArticleSourceViewHolderComponent,
             ankoContext: AnkoContext<ViewGroup>
     ) : RecyclerView.ViewHolder(component.createView(ankoContext)) {
-        var source: Source? = null
+        var source: ArticleSource? = null
             set(value) {
                 field = value
                 bindSource(value)
             }
 
-        private fun bindSource(value: Source?) {
+        private fun bindSource(value: ArticleSource?) {
             value ?: return
             component.logoImage.load(value.logoUrls?.small)
             component.nameText.text = value.name

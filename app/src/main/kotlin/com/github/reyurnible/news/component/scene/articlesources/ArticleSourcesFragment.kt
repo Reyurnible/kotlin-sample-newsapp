@@ -1,4 +1,4 @@
-package com.github.reyurnible.news.component.scene.home
+package com.github.reyurnible.news.component.scene.articlesources
 
 import android.arch.lifecycle.LifecycleObserver
 import android.arch.lifecycle.LifecycleRegistry
@@ -6,7 +6,6 @@ import android.arch.lifecycle.LifecycleRegistryOwner
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,34 +16,33 @@ import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import org.jetbrains.anko.AnkoContext
 
-
 /**
- * Home Scene
+ * Sources Scene
  */
-class HomeFragment : RxFragment(), HomeView, LifecycleRegistryOwner {
+class ArticleSourcesFragment : RxFragment(), SourcesView, LifecycleRegistryOwner, ArticleSourcesFragmentComponent.SourcesFragmentComponentListener {
     private object Key {
-        // Has no argument
+
     }
 
     companion object {
-        fun createInstance(): HomeFragment = HomeFragment()
+        fun createInstance(): ArticleSourcesFragment = ArticleSourcesFragment()
     }
 
     override lateinit var sourceList: Observable<List<ArticleSource>>
 
     private val registry = LifecycleRegistry(this)
-    private lateinit var presenter: HomePresenter
-    private val component: HomeFragmentComponent = HomeFragmentComponent()
+    private lateinit var presenter: SourcesPresenter
+    private val component: ArticleSourcesFragmentComponent = ArticleSourcesFragmentComponent(this)
 
     override fun onAttach(context: Context?) {
         super.onAttach(context)
-        presenter = HomePresenterImpl(
+        presenter = ArticleSourcesPresenterImpl(
                 view = this,
-                sceneDataHolder = ViewModelProviders.of(this).get(HomeSceneDataHolder::class.java)
+                sceneDataHolder = ViewModelProviders.of(this).get(SourceSceneDataHolder::class.java)
         )
     }
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View =
+    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? =
             component.createView(AnkoContext.create(activity, this))
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
@@ -53,9 +51,9 @@ class HomeFragment : RxFragment(), HomeView, LifecycleRegistryOwner {
                 .observeOn(AndroidSchedulers.mainThread())
                 .bindToLifecycle(this)
                 .subscribe {
-                    Log.d(HomeFragment::class.java.simpleName, "sourceList subscribe: ${it}")
-                    component.pagerAdapter.sources = it
-                    component.pagerAdapter.notifyDataSetChanged()
+                    component.adapter.sources.clear()
+                    component.adapter.sources.addAll(it)
+                    component.adapter.notifyDataSetChanged()
                 }
     }
 
@@ -66,6 +64,14 @@ class HomeFragment : RxFragment(), HomeView, LifecycleRegistryOwner {
     }
 
     override fun showError() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun onScrollReached(count: Int) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun moveToArticles(source: ArticleSource) {
 
     }
 

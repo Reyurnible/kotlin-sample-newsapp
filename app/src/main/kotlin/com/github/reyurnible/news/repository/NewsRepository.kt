@@ -1,10 +1,9 @@
 package com.github.reyurnible.news.repository
 
 import com.github.reyurnible.news.entity.Article
-import com.github.reyurnible.news.entity.Source
+import com.github.reyurnible.news.entity.ArticleSource
 import com.github.reyurnible.news.repository.response.GetArticlesResponse
 import com.github.reyurnible.news.repository.response.GetSourcesResponse
-import io.reactivex.Observable
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
 
@@ -26,7 +25,7 @@ class NewsRepository(private val apiClient: NewsApiClient) {
             category: String? = null,
             language: String? = null,
             country: String? = null
-    ): Single<List<Source>> =
+    ): Single<List<ArticleSource>> =
             apiClient.newsApi
                     .getSources(category, language, country)
                     .map(GetSourcesResponse::sources)

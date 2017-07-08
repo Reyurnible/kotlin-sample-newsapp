@@ -5,7 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import com.github.reyurnible.news.R
 import com.github.reyurnible.news.component.scene.home.HomeFragment
-import com.github.reyurnible.news.component.scene.sources.SourcesFragment
+import com.github.reyurnible.news.component.scene.articlesources.ArticleSourcesFragment
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity
 import org.jetbrains.anko.setContentView
 
@@ -32,7 +32,7 @@ class TopActivity : RxAppCompatActivity() {
                     true
                 }
                 R.id.top_action_sources -> {
-                    supportFragmentManager.beginTransaction().replace(R.id.layout_container, SourcesFragment.createInstance()).commit()
+                    supportFragmentManager.beginTransaction().replace(R.id.layout_container, ArticleSourcesFragment.createInstance()).commit()
                     true
                 }
                 R.id.top_action_favorites -> true
