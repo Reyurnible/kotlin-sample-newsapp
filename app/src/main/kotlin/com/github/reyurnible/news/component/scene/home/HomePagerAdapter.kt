@@ -4,7 +4,7 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
 import com.github.reyurnible.news.component.scene.articles.ArticlesFragment
-import com.github.reyurnible.news.entity.ArticleSource
+import com.github.reyurnible.news.repository.entity.ArticleSource
 
 /**
  * Home Scene Pager Adapter

@@ -3,7 +3,7 @@ package com.github.reyurnible.news.component.viewholder
 import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
-import com.github.reyurnible.news.entity.ArticleSource
+import com.github.reyurnible.news.repository.entity.ArticleSource
 import com.github.reyurnible.news.extension.load
 import org.jetbrains.anko.AnkoContext
 

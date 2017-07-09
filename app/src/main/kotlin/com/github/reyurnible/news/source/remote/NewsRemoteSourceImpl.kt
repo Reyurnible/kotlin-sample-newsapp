@@ -1,8 +1,8 @@
 package com.github.reyurnible.news.source.remote
 
-import com.github.reyurnible.news.entity.Article
-import com.github.reyurnible.news.entity.ArticleSource
-import com.github.reyurnible.news.source.NewsRemoteSource
+import com.github.reyurnible.news.repository.entity.Article
+import com.github.reyurnible.news.repository.entity.ArticleSource
+import com.github.reyurnible.news.source.RemoteNewsSource
 import com.github.reyurnible.news.source.remote.response.GetArticlesResponse
 import com.github.reyurnible.news.source.remote.response.GetSourcesResponse
 import io.reactivex.Single
@@ -11,7 +11,7 @@ import io.reactivex.schedulers.Schedulers
 /**
  * News Sources Impl
  */
-class NewsRemoteSourceImpl(private val newsApi: NewsApi) : NewsRemoteSource {
+class NewsRemoteSourceImpl(private val newsApi: NewsApi) : RemoteNewsSource {
 
     override fun getArticles(
             source: String,

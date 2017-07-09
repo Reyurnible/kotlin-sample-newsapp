@@ -1,6 +1,6 @@
 package com.github.reyurnible.news.source.remote.response
 
-import com.github.reyurnible.news.entity.Article
+import com.github.reyurnible.news.repository.entity.Article
 
 /**
  * Get Articles Request Response

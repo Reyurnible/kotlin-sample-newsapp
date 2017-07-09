@@ -3,9 +3,8 @@ package com.github.reyurnible.news.component.viewholder
 import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
-import com.github.reyurnible.news.entity.Article
+import com.github.reyurnible.news.repository.entity.Article
 import com.github.reyurnible.news.extension.load
-import com.squareup.picasso.Picasso
 import org.jetbrains.anko.AnkoContext
 import java.util.*
 

@@ -1,4 +1,4 @@
-package com.github.reyurnible.news.entity
+package com.github.reyurnible.news.repository.entity
 
 import java.util.*
 
