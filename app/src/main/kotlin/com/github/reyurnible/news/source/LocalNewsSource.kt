@@ -3,6 +3,7 @@ package com.github.reyurnible.news.source
 import com.github.reyurnible.news.repository.entity.Article
 import com.github.reyurnible.news.repository.entity.ArticleSource
 import io.reactivex.Completable
+import io.reactivex.Observable
 import io.reactivex.Single
 
 /**
@@ -10,9 +11,9 @@ import io.reactivex.Single
  */
 interface LocalNewsSource {
 
-    fun getArticles(source: String, sortBy: String?): Single<List<Article>>
+    fun getArticles(source: String, sortBy: String?): Observable<Article>
 
-    fun getSources(category: String?, language: String?, country: String?): Single<List<ArticleSource>>
+    fun getSources(category: String?, language: String?, country: String?): Observable<List<ArticleSource>>
 
     fun setArticles(source: String, articles: List<Article>): Completable
 

@@ -11,7 +11,7 @@ import io.reactivex.schedulers.Schedulers
 /**
  * News Sources Impl
  */
-class NewsRemoteSourceImpl(private val newsApi: NewsApi) : RemoteNewsSource {
+class RemoteNewsSourceImpl(private val newsApi: NewsApi) : RemoteNewsSource {
 
     override fun getArticles(
             source: String,
