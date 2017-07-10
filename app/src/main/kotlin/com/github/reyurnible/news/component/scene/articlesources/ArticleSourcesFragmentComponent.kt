@@ -14,7 +14,7 @@ import org.jetbrains.anko.verticalLayout
  */
 class ArticleSourcesFragmentComponent(
         var listener: SourcesFragmentComponentListener? = null
-) : AnkoComponent<ArticleArticleSourcesFragment> {
+) : AnkoComponent<ArticleSourcesFragment> {
     companion object {
         const val GRID_COLUMNS = 3
         const val OFFSET_PAGE_REACH = 2
@@ -22,7 +22,7 @@ class ArticleSourcesFragmentComponent(
 
     lateinit var adapter: ArticleSourceAdapter
 
-    override fun createView(ui: AnkoContext<ArticleArticleSourcesFragment>): View = with(ui) {
+    override fun createView(ui: AnkoContext<ArticleSourcesFragment>): View = with(ui) {
         adapter = ArticleSourceAdapter(ui.ctx)
         verticalLayout {
             recyclerView {

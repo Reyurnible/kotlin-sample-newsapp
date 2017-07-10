@@ -19,24 +19,27 @@ import org.jetbrains.anko.AnkoContext
 /**
  * Sources Scene
  */
-class ArticleArticleSourcesFragment : RxFragment(), ArticleSourcesView, LifecycleRegistryOwner, ArticleSourcesFragmentComponent.SourcesFragmentComponentListener {
+class ArticleSourcesFragment : RxFragment(),
+        ArticleSourcesView,
+        LifecycleRegistryOwner,
+        ArticleSourcesFragmentComponent.SourcesFragmentComponentListener {
     private object Key {
 
     }
 
     companion object {
-        fun createInstance(): ArticleArticleSourcesFragment = ArticleArticleSourcesFragment()
+        fun createInstance(): ArticleSourcesFragment = ArticleSourcesFragment()
     }
 
     override lateinit var articleSourceList: Observable<List<ArticleSource>>
 
     private val registry = LifecycleRegistry(this)
-    private lateinit var presenterArticle: ArticleSourcesPresenter
+    private lateinit var presenter: ArticleSourcesPresenter
     private val component: ArticleSourcesFragmentComponent = ArticleSourcesFragmentComponent(this)
 
     override fun onAttach(context: Context?) {
         super.onAttach(context)
-        presenterArticle = ArticleSourcesPresenterImpl(
+        presenter = ArticleSourcesPresenterImpl(
                 view = this,
                 sceneDataHolder = ViewModelProviders.of(this).get(ArticleSourcesPresenter.ArticleSourceSceneDataHolder::class.java)
         )
