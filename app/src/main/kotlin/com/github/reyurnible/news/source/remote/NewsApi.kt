@@ -14,8 +14,8 @@ interface NewsApi {
 
     @GET("/v1/articles")
     fun getArticles(
-            @Query("source") source: String,
             @Query("apiKey") apiKey: String,
+            @Query("source") source: String,
             @Query("sortBy") sortBy: String?
     ): Single<GetArticlesResponse>
 

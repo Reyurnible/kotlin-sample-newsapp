@@ -15,12 +15,13 @@ import retrofit2.converter.gson.GsonConverterFactory
  */
 object NewsApiClient {
     const val API_BASE_URL = "https://newsapi.org"
-    const val API_KEY = BuildConfig.API_KEY
+    val API_KEY
+        get() = BuildConfig.API_KEY
 
     private val retrofit: Retrofit = Retrofit.Builder()
             .baseUrl(API_BASE_URL)
             .client(createClient())
-            .addConverterFactory(createConverter())// Gsonで処理するための設定
+            .addConverterFactory(createConverter())
             .addCallAdapterFactory(createCallAdapter())
             .build()
 

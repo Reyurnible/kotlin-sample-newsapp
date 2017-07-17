@@ -18,7 +18,7 @@ class RemoteNewsSourceImpl(private val newsApi: NewsApi) : RemoteNewsSource {
             sortBy: String?
     ): Single<List<Article>> =
             newsApi
-                    .getArticles(source, NewsApiClient.API_KEY, sortBy)
+                    .getArticles(apiKey = NewsApiClient.API_KEY, source = source, sortBy = sortBy)
                     .map(GetArticlesResponse::articles)
                     .subscribeOn(Schedulers.io())
 
