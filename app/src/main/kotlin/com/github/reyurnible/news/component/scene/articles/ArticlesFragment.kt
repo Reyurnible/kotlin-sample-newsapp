@@ -75,7 +75,7 @@ class ArticlesFragment : RxFragment(),
     override fun getLifecycle(): LifecycleRegistry = registry
 
     override fun bindLifecycle(observer: LifecycleObserver) {
-
+        lifecycle.addObserver(observer)
     }
 
     override fun showError() {
