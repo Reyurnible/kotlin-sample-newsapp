@@ -15,7 +15,7 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         // Loading Api Key from secret.properties
-        buildConfigField("String", "API_KEY", "\"${secretProps.getProperty('NEW_API_KEY')}\"")
+        buildConfigField("String", "API_KEY", "\"${secretProps.getProperty('NEWS_API_KEY')}\"")
     }
     buildTypes {
         release {
@@ -104,7 +104,8 @@ def loadSecretProperties() {
         props.load(secretPropsFile.newDataInputStream())
     } else {
         // Set Dummy Properties for Build
-        props['newsApiKey']='dummy'
+        // Check your key, or go to https://newsapi.org to create a free API key.
+        props['NEWS_API_KEY']='dummy'
     }
     return props
 }
