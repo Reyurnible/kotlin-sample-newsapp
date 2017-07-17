@@ -54,6 +54,7 @@ dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
     // Kodein
     compile "com.github.salomonbrys.kodein:kodein:$kodeinVersion"
+    compile "com.github.salomonbrys.kodein:kodein-android:$kodeinVersion"
     // Anko(View DSL for Kotlin)
     compile "org.jetbrains.anko:anko:$ankoVersion"
     compile "org.jetbrains.anko:anko-commons:$ankoVersion"

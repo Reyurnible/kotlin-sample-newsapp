@@ -10,6 +10,7 @@ class NewsApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
+        AppBinder.initialize(this)
         // Database initialize
         RequeryClient.initialize(this)
     }
