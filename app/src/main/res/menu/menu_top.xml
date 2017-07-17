@@ -4,19 +4,19 @@
     <item
         android:id="@+id/top_action_home"
         android:enabled="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/ic_home_black_24dp"
         android:title="@string/top_menu_home"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/top_action_sources"
         android:enabled="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/ic_dashboard_black_24dp"
         android:title="@string/top_menu_sources"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/top_action_favorites"
         android:enabled="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/ic_bookmark_black_24dp"
         android:title="@string/top_menu_favorites"
         app:showAsAction="ifRoom" />
 </menu>
