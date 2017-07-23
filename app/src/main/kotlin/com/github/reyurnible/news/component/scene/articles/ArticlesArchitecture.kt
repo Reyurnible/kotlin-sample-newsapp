@@ -10,7 +10,8 @@ import io.reactivex.Observable
  * Articles Architecture
  */
 interface ArticlesPresenter {
-    var sourceId: String
+    val view: ArticlesView
+    val sourceId: String
 
     fun onScrollReached(count: Int)
 

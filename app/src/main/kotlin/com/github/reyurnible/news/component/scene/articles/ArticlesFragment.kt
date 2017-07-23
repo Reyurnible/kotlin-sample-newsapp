@@ -53,9 +53,12 @@ class ArticlesFragment : RxFragment(),
         bind<String>(tag = Key.sourceId) with instance(arguments.getString(Key.sourceId))
         // Inject Presenter
         bind<ArticlesPresenter>() with provider {
-            ArticlesPresenterImpl(view = instance(), sceneDataHolder = instance(), newsRepository = instance()).apply {
-                sourceId = instance()
-            }
+            ArticlesPresenterImpl(
+                    view = instance(),
+                    sourceId = instance(Key.sourceId),
+                    sceneDataHolder = instance(),
+                    newsRepository = instance()
+            )
         }
     }
 
@@ -83,8 +86,8 @@ class ArticlesFragment : RxFragment(),
     }
 
     override fun onDestroy() {
-        super.onDestroy()
         destroyInjector()
+        super.onDestroy()
     }
 
     override fun onScrollReached(count: Int) {
