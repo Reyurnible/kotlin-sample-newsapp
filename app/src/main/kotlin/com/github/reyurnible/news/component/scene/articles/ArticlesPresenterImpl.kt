@@ -1,18 +1,16 @@
 package com.github.reyurnible.news.component.scene.articles
 
-import com.github.reyurnible.news.AppBinder
 import com.github.reyurnible.news.component.scene.RxLifecycleObserver
 import com.github.reyurnible.news.repository.NewsRepository
 import com.trello.rxlifecycle2.kotlin.bindToLifecycle
 
 class ArticlesPresenterImpl(
         private val view: ArticlesView,
-        private val sceneDataHolder: ArticlesPresenter.ArticlesSceneDataHolder
+        private val sceneDataHolder: ArticlesPresenter.ArticlesSceneDataHolder,
+        private val newsRepository: NewsRepository
 ) : RxLifecycleObserver(), ArticlesPresenter {
     // Inject from View
-    lateinit var sourceId: String
-
-    private var newsRepository: NewsRepository = AppBinder.bind()
+    lateinit override var sourceId: String
 
     init {
         view.bindLifecycle(this)
@@ -30,4 +28,7 @@ class ArticlesPresenterImpl(
                 })
     }
 
+    override fun onScrollReached(count: Int) {
+
+    }
 }

@@ -4,13 +4,15 @@ import android.arch.lifecycle.LifecycleObserver
 import android.arch.lifecycle.LifecycleRegistry
 import android.arch.lifecycle.LifecycleRegistryOwner
 import android.arch.lifecycle.ViewModelProviders
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.github.reyurnible.news.AppBinder
 import com.github.reyurnible.news.extension.applyArguments
 import com.github.reyurnible.news.repository.entity.Article
+import com.github.salomonbrys.kodein.*
+import com.github.salomonbrys.kodein.android.FragmentInjector
 import com.trello.rxlifecycle2.components.support.RxFragment
 import com.trello.rxlifecycle2.kotlin.bindToLifecycle
 import io.reactivex.Observable
@@ -23,6 +25,7 @@ import org.jetbrains.anko.AnkoContext
 class ArticlesFragment : RxFragment(),
         ArticlesView,
         LifecycleRegistryOwner,
+        FragmentInjector,
         ArticlesFragmentComponent.ArticlesFragmentComponentListener {
     private object Key {
         const val sourceId = "sourceId"
@@ -34,20 +37,31 @@ class ArticlesFragment : RxFragment(),
         }
     }
 
+    // Kodein
+    override val injector: KodeinInjector = KodeinInjector()
+    private val presenter: ArticlesPresenter by injector.instance()
+    // Presenter Datas
     override lateinit var articleList: Observable<List<Article>>
 
     private val registry = LifecycleRegistry(this)
-    private lateinit var presenter: ArticlesPresenter
     private val component: ArticlesFragmentComponent = ArticlesFragmentComponent()
 
-    override fun onAttach(context: Context?) {
-        super.onAttach(context)
-        presenter = ArticlesPresenterImpl(
-                view = this,
-                sceneDataHolder = ViewModelProviders.of(this).get(ArticlesPresenter.ArticlesSceneDataHolder::class.java)
-        ).apply {
-            sourceId = arguments.getString(Key.sourceId)
+    override fun provideOverridingModule() = Kodein.Module {
+        extend(AppBinder.kodein)
+        bind<ArticlesView>() with instance(this@ArticlesFragment)
+        bind<ArticlesPresenter.ArticlesSceneDataHolder>() with instance(ViewModelProviders.of(this@ArticlesFragment).get(ArticlesPresenter.ArticlesSceneDataHolder::class.java))
+        bind<String>(tag = Key.sourceId) with instance(arguments.getString(Key.sourceId))
+        // Inject Presenter
+        bind<ArticlesPresenter>() with provider {
+            ArticlesPresenterImpl(view = instance(), sceneDataHolder = instance(), newsRepository = instance()).apply {
+                sourceId = instance()
+            }
         }
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        initializeInjector()
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? =
@@ -68,8 +82,13 @@ class ArticlesFragment : RxFragment(),
                 })
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        destroyInjector()
+    }
+
     override fun onScrollReached(count: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        presenter.onScrollReached(count)
     }
 
     override fun getLifecycle(): LifecycleRegistry = registry
@@ -81,5 +100,4 @@ class ArticlesFragment : RxFragment(),
     override fun showError() {
 
     }
-
 }

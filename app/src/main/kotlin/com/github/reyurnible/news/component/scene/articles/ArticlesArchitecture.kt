@@ -10,9 +10,13 @@ import io.reactivex.Observable
  * Articles Architecture
  */
 interface ArticlesPresenter {
+    var sourceId: String
+
+    fun onScrollReached(count: Int)
 
     class ArticlesSceneDataHolder : ViewModel() {
         val articleList: Variable<MutableList<Article>> = Variable.createDefault(mutableListOf())
+
     }
 }
 
