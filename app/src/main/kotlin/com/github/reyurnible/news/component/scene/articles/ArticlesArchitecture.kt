@@ -10,9 +10,6 @@ import io.reactivex.Observable
  * Articles Architecture
  */
 interface ArticlesPresenter {
-    val view: ArticlesView
-    val sourceId: String
-
     fun onScrollReached(count: Int)
 
     class ArticlesSceneDataHolder : ViewModel() {

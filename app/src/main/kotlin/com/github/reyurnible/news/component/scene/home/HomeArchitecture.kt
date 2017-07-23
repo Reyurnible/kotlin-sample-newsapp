@@ -2,8 +2,8 @@ package com.github.reyurnible.news.component.scene.home
 
 import android.arch.lifecycle.LifecycleObserver
 import android.arch.lifecycle.ViewModel
-import com.github.reyurnible.news.repository.entity.ArticleSource
 import com.github.reyurnible.news.extension.Variable
+import com.github.reyurnible.news.repository.entity.ArticleSource
 import io.reactivex.Observable
 
 /**

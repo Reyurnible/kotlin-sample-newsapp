@@ -1,6 +1,5 @@
 package com.github.reyurnible.news.component.scene.home
 
-import com.github.reyurnible.news.AppBinder
 import com.github.reyurnible.news.component.scene.RxLifecycleObserver
 import com.github.reyurnible.news.repository.NewsRepository
 import com.trello.rxlifecycle2.kotlin.bindToLifecycle
@@ -10,9 +9,9 @@ import com.trello.rxlifecycle2.kotlin.bindToLifecycle
  */
 class HomePresenterImpl(
         private val view: HomeView,
-        private val sceneDataHolder: HomePresenter.HomeSceneDataHolder
+        private val sceneDataHolder: HomePresenter.HomeSceneDataHolder,
+        protected val newsRepository: NewsRepository
 ) : RxLifecycleObserver(), HomePresenter {
-    private var newsRepository: NewsRepository = AppBinder.bind()
 
     init {
         // Observe parent lifecycle
@@ -27,7 +26,7 @@ class HomePresenterImpl(
                 .subscribe({
                     sceneDataHolder.sourceList.value = it.toMutableList()
                 }, {
-
+                    view.showError()
                 })
     }
 

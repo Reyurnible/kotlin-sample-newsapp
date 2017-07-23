@@ -4,13 +4,15 @@ import android.arch.lifecycle.LifecycleObserver
 import android.arch.lifecycle.LifecycleRegistry
 import android.arch.lifecycle.LifecycleRegistryOwner
 import android.arch.lifecycle.ViewModelProviders
-import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.github.reyurnible.news.AppBinder
 import com.github.reyurnible.news.repository.entity.ArticleSource
+import com.github.salomonbrys.kodein.*
+import com.github.salomonbrys.kodein.android.FragmentInjector
 import com.trello.rxlifecycle2.components.support.RxFragment
 import com.trello.rxlifecycle2.kotlin.bindToLifecycle
 import io.reactivex.Observable
@@ -21,7 +23,7 @@ import org.jetbrains.anko.AnkoContext
 /**
  * Home Scene
  */
-class HomeFragment : RxFragment(), HomeView, LifecycleRegistryOwner {
+class HomeFragment : RxFragment(), HomeView, FragmentInjector, LifecycleRegistryOwner {
     private object Key {
         // Has no argument
     }
@@ -32,16 +34,23 @@ class HomeFragment : RxFragment(), HomeView, LifecycleRegistryOwner {
 
     override lateinit var sourceList: Observable<List<ArticleSource>>
 
+    override val injector: KodeinInjector = KodeinInjector()
     private val registry = LifecycleRegistry(this)
-    private lateinit var presenter: HomePresenter
+    private val presenter: HomePresenter by injector.instance()
     private val component: HomeFragmentComponent = HomeFragmentComponent()
 
-    override fun onAttach(context: Context?) {
-        super.onAttach(context)
-        presenter = HomePresenterImpl(
-                view = this,
-                sceneDataHolder = ViewModelProviders.of(this).get(HomePresenter.HomeSceneDataHolder::class.java)
-        )
+    override fun provideOverridingModule() = Kodein.Module {
+        extend(AppBinder.kodein)
+        bind<HomeView>() with instance(this@HomeFragment)
+        bind<HomePresenter.HomeSceneDataHolder>() with instance(ViewModelProviders.of(this@HomeFragment).get(HomePresenter.HomeSceneDataHolder::class.java))
+        bind<HomePresenter>() with provider {
+            HomePresenterImpl(view = instance(), sceneDataHolder = instance(), newsRepository = instance())
+        }
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        initializeInjector()
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View =
@@ -53,10 +62,14 @@ class HomeFragment : RxFragment(), HomeView, LifecycleRegistryOwner {
                 .observeOn(AndroidSchedulers.mainThread())
                 .bindToLifecycle(this)
                 .subscribe {
-                    Log.d(HomeFragment::class.java.simpleName, "articleSourceList subscribe: ${it}")
                     component.pagerAdapter.sources = it
                     component.pagerAdapter.notifyDataSetChanged()
                 }
+    }
+
+    override fun onDestroy() {
+        destroyInjector()
+        super.onDestroy()
     }
 
     override fun getLifecycle(): LifecycleRegistry = registry

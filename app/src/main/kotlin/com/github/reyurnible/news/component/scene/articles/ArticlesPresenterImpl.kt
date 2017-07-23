@@ -5,8 +5,8 @@ import com.github.reyurnible.news.repository.NewsRepository
 import com.trello.rxlifecycle2.kotlin.bindToLifecycle
 
 class ArticlesPresenterImpl(
-        override val view: ArticlesView,
-        override val sourceId: String,
+        private val view: ArticlesView,
+        private val sourceId: String,
         private val sceneDataHolder: ArticlesPresenter.ArticlesSceneDataHolder,
         private val newsRepository: NewsRepository
 ) : RxLifecycleObserver(), ArticlesPresenter {

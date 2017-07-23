@@ -5,8 +5,6 @@ package com.github.reyurnible.news.component.scene.top
  * Provide interface for Top Scene
  */
 interface TopPresenter {
-    val view: TopView
-
     fun onClickMenuHome()
     fun onClickMenuSources()
     fun onClickMenuFavorites()

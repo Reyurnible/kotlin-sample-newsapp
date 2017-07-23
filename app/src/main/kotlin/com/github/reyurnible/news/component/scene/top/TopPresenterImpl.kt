@@ -4,7 +4,7 @@ package com.github.reyurnible.news.component.scene.top
  * Top Presenter Impl
  */
 class TopPresenterImpl(
-        override val view: TopView
+        val view: TopView
 ) : TopPresenter {
     override fun onClickMenuHome() {
         view.showHome()
