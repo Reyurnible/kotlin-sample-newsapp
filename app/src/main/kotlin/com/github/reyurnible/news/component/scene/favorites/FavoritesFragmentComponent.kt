@@ -2,7 +2,7 @@ package com.github.reyurnible.news.component.scene.favorites
 
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
-import com.github.reyurnible.news.component.viewholder.ArticleSourceAdapter
+import com.github.reyurnible.news.component.adapter.article_source.ArticleSourceAdapter
 import com.github.reyurnible.news.extension.addEndScrollListener
 import org.jetbrains.anko.AnkoComponent
 import org.jetbrains.anko.AnkoContext

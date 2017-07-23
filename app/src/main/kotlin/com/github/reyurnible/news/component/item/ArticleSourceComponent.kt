@@ -1,20 +1,26 @@
-package com.github.reyurnible.news.component.viewholder
+package com.github.reyurnible.news.component.item
 
 import android.text.TextUtils
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import com.github.reyurnible.news.repository.entity.ArticleSource
 import org.jetbrains.anko.*
-import kotlin.properties.Delegates
 
 /**
- * SourceAdapter ViewHolder Component
+ * ArticleSource Item Component
  */
-class ArticleSourceViewHolderComponent : AnkoComponent<ViewGroup> {
-    var logoImage: ImageView by Delegates.notNull()
-    var nameText: TextView by Delegates.notNull()
-    var descriptionText: TextView by Delegates.notNull()
+class ArticleSourceComponent : AnkoComponent<ViewGroup> {
+    var source: ArticleSource? = null
+        set(value) {
+            field = value
+            value?.let(this::bind)
+        }
+
+    private lateinit var logoImage: ImageView
+    private lateinit var nameText: TextView
+    private lateinit var descriptionText: TextView
 
     override fun createView(ui: AnkoContext<ViewGroup>): View = with(ui) {
         verticalLayout {
@@ -23,13 +29,19 @@ class ArticleSourceViewHolderComponent : AnkoComponent<ViewGroup> {
                 adjustViewBounds = true
             }.lparams(matchParent, wrapContent)
             nameText = textView {
-                text = "Name"
+
             }.lparams(matchParent, wrapContent)
-            descriptionText = textView {
-                text = "Description"
+            descriptionText = textView() {
                 maxLines = 3
                 ellipsize = TextUtils.TruncateAt.END
             }.lparams(matchParent, wrapContent)
         }
     }
+
+    private fun bind(articleSource: ArticleSource) {
+        nameText.text = articleSource.name
+        descriptionText.text = articleSource.description
+    }
+
+
 }
