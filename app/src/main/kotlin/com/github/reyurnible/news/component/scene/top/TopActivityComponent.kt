@@ -11,7 +11,7 @@ import org.jetbrains.anko.design.bottomNavigationView
 /**
  * Top Activity Component
  */
-class TopActivityComponent : AnkoComponent<TopActivity>, TopView {
+class TopActivityComponent : AnkoComponent<TopActivity> {
     var menuItemClickListener: ((MenuItem) -> Boolean)? = null
         set(value) {
             field = value
