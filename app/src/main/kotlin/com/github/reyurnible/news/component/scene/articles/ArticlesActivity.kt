@@ -27,6 +27,6 @@ class ArticlesActivity : RxAppCompatActivity() {
         val component: ArticlesActivityComponent = ArticlesActivityComponent()
         component.setContentView(this)
         val sourceId = intent.getStringExtra(Key.sourceId)
-        savedInstanceState ?: setContentFragment(component.containerLayout.id, ArticlesFragment.createInstance(sourceId))
+        savedInstanceState ?: setContentFragment(fragment = ArticlesFragment.createInstance(sourceId))
     }
 }

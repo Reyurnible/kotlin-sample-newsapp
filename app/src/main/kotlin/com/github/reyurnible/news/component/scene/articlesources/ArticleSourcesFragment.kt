@@ -9,6 +9,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.github.reyurnible.news.component.scene.articles.ArticlesActivity
+import com.github.reyurnible.news.extension.start
 import com.github.reyurnible.news.repository.entity.ArticleSource
 import com.trello.rxlifecycle2.components.support.RxFragment
 import com.trello.rxlifecycle2.kotlin.bindToLifecycle
@@ -23,10 +25,6 @@ class ArticleSourcesFragment : RxFragment(),
         ArticleSourcesView,
         LifecycleRegistryOwner,
         ArticleSourcesFragmentComponent.SourcesFragmentComponentListener {
-    private object Key {
-
-    }
-
     companion object {
         fun createInstance(): ArticleSourcesFragment = ArticleSourcesFragment()
     }
@@ -50,13 +48,16 @@ class ArticleSourcesFragment : RxFragment(),
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        // Add Listener
+        component.adapter.onItemClickListener = presenter::onClickSource
         articleSourceList
                 .observeOn(AndroidSchedulers.mainThread())
                 .bindToLifecycle(this)
-                .subscribe {
-                    component.adapter.sources.clear()
-                    component.adapter.sources.addAll(it)
-                    component.adapter.notifyDataSetChanged()
+                .subscribe { sources ->
+                    component.adapter.run {
+                        this.sources = sources
+                        notifyDataSetChanged()
+                    }
                 }
     }
 
@@ -75,7 +76,7 @@ class ArticleSourcesFragment : RxFragment(),
     }
 
     override fun moveToArticles(source: ArticleSource) {
-
+        ArticlesActivity.createIntent(activity, sourceId = source.id).start(activity)
     }
 
 }

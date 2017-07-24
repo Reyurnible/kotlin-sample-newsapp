@@ -12,7 +12,7 @@ import org.jetbrains.anko.AnkoContext
  */
 class ArticleSourceAdapter(
         private val context: Context,
-        var sources: MutableList<ArticleSource> = mutableListOf(),
+        var sources: List<ArticleSource> = emptyList(),
         var onItemClickListener: ((ArticleSource) -> Unit)? = null
 ) : RecyclerView.Adapter<ArticleSourceAdapter.ViewHolder>() {
 
