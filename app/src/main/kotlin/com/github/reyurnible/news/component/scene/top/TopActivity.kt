@@ -6,7 +6,9 @@ import android.os.Bundle
 import com.github.reyurnible.news.AppBinder
 import com.github.reyurnible.news.R
 import com.github.reyurnible.news.component.scene.article_sources.ArticleSourcesFragment
+import com.github.reyurnible.news.component.scene.favorites.FavoritesFragment
 import com.github.reyurnible.news.component.scene.home.HomeFragment
+import com.github.reyurnible.news.extension.setContentFragment
 import com.github.salomonbrys.kodein.*
 import com.github.salomonbrys.kodein.android.ActivityInjector
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity
@@ -65,15 +67,15 @@ class TopActivity : RxAppCompatActivity(), TopView, ActivityInjector {
     }
 
     override fun showHome() {
-        supportFragmentManager.beginTransaction().replace(R.id.layout_container, HomeFragment.createInstance()).commit()
+        setContentFragment(fragment = HomeFragment.createInstance())
     }
 
     override fun showSources() {
-        supportFragmentManager.beginTransaction().replace(R.id.layout_container, ArticleSourcesFragment.createInstance()).commit()
+        setContentFragment(fragment = ArticleSourcesFragment.createInstance())
     }
 
     override fun showFavorites() {
-        // TODO not implemented
+        setContentFragment(fragment = FavoritesFragment.createInstance())
     }
 
 

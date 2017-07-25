@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.github.reyurnible.news.repository.entity.Article
 import com.github.reyurnible.news.repository.entity.ArticleSource
 import com.trello.rxlifecycle2.components.support.RxFragment
 import com.trello.rxlifecycle2.kotlin.bindToLifecycle
@@ -28,7 +29,7 @@ class FavoritesFragment : RxFragment(), FavoritesView, LifecycleRegistryOwner, F
         fun createInstance(): FavoritesFragment = FavoritesFragment()
     }
 
-    override lateinit var sourceList: Observable<List<ArticleSource>>
+    override lateinit var articleList: Observable<List<Article>>
 
     private val registry = LifecycleRegistry(this)
     private lateinit var presenter: FavoritesPresenter
@@ -47,11 +48,14 @@ class FavoritesFragment : RxFragment(), FavoritesView, LifecycleRegistryOwner, F
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        sourceList
+        articleList
                 .observeOn(AndroidSchedulers.mainThread())
                 .bindToLifecycle(this)
                 .subscribe {
-
+                    component.adapter.apply {
+                        articles = it
+                        notifyDataSetChanged()
+                    }
                 }
     }
 
@@ -62,15 +66,10 @@ class FavoritesFragment : RxFragment(), FavoritesView, LifecycleRegistryOwner, F
     }
 
     override fun showError() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
     }
 
     override fun onScrollReached(count: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun moveToArticles(source: ArticleSource) {
 
     }
-
 }

@@ -18,5 +18,4 @@ class TopPresenterImpl(
         view.showFavorites()
     }
 
-
 }

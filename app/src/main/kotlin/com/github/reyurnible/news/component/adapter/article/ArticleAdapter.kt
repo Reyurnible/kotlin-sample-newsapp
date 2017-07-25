@@ -13,7 +13,7 @@ import java.util.*
  */
 class ArticleAdapter(
         private val context: Context,
-        var articles: ArrayList<Article> = ArrayList(),
+        var articles: List<Article> = ArrayList(),
         var onItemClickListener: ((Article) -> Unit)? = null
 ) : RecyclerView.Adapter<ArticleAdapter.ViewHolder>() {
 
