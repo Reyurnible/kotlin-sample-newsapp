@@ -51,9 +51,7 @@ class FavoritesFragment : RxFragment(), FavoritesView, LifecycleRegistryOwner, F
                 .observeOn(AndroidSchedulers.mainThread())
                 .bindToLifecycle(this)
                 .subscribe {
-                    component.adapter.sources.clear()
-                    component.adapter.sources.addAll(it)
-                    component.adapter.notifyDataSetChanged()
+
                 }
     }
 

@@ -1,4 +1,4 @@
-package com.github.reyurnible.news.component.scene.articlesources
+package com.github.reyurnible.news.component.scene.article_sources
 
 import android.arch.lifecycle.LifecycleObserver
 import android.arch.lifecycle.LifecycleRegistry

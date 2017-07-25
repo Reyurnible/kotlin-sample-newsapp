@@ -5,7 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import com.github.reyurnible.news.AppBinder
 import com.github.reyurnible.news.R
-import com.github.reyurnible.news.component.scene.articlesources.ArticleSourcesFragment
+import com.github.reyurnible.news.component.scene.article_sources.ArticleSourcesFragment
 import com.github.reyurnible.news.component.scene.home.HomeFragment
 import com.github.salomonbrys.kodein.*
 import com.github.salomonbrys.kodein.android.ActivityInjector

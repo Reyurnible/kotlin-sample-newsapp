@@ -2,7 +2,7 @@ package com.github.reyurnible.news.extension
 
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import com.github.reyurnible.news.component.scene.articlesources.ArticleSourcesFragmentComponent
+import com.github.reyurnible.news.component.scene.article_sources.ArticleSourcesFragmentComponent
 
 /**
  * RecyclerView Extensions

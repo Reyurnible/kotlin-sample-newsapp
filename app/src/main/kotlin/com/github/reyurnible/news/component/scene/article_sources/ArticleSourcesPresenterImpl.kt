@@ -1,4 +1,4 @@
-package com.github.reyurnible.news.component.scene.articlesources
+package com.github.reyurnible.news.component.scene.article_sources
 
 import com.github.reyurnible.news.AppBinder
 import com.github.reyurnible.news.component.scene.RxLifecycleObserver
