@@ -11,6 +11,8 @@ interface NewsRepository {
 
     fun getArticles(source: String, sortBy: String? = null): Single<List<Article>>
 
+    fun getFavoriteArticles(): Single<List<Article>>
+
     fun getSources(category: String? = null, language: String? = null, country: String? = null): Single<List<ArticleSource>>
 
 }
