@@ -49,7 +49,9 @@ class ArticlesFragment : RxFragment(),
     override fun provideOverridingModule() = Kodein.Module {
         extend(AppBinder.kodein)
         bind<ArticlesView>() with instance(this@ArticlesFragment)
-        bind<ArticlesPresenter.ArticlesSceneDataHolder>() with instance(ViewModelProviders.of(this@ArticlesFragment).get(ArticlesPresenter.ArticlesSceneDataHolder::class.java))
+        bind<ArticlesPresenter.ArticlesSceneDataHolder>() with instance(
+                ViewModelProviders.of(this@ArticlesFragment).get(ArticlesPresenter.ArticlesSceneDataHolder::class.java)
+        )
         bind<String>(tag = Key.sourceId) with instance(arguments.getString(Key.sourceId))
         // Inject Presenter
         bind<ArticlesPresenter>() with provider {
@@ -90,10 +92,6 @@ class ArticlesFragment : RxFragment(),
         super.onDestroy()
     }
 
-    override fun onScrollReached(count: Int) {
-        presenter.onScrollReached(count)
-    }
-
     override fun getLifecycle(): LifecycleRegistry = registry
 
     override fun bindLifecycle(observer: LifecycleObserver) {
@@ -102,5 +100,9 @@ class ArticlesFragment : RxFragment(),
 
     override fun showError() {
 
+    }
+
+    override fun onScrollReached(count: Int) {
+        presenter.onScrollReached(count)
     }
 }
