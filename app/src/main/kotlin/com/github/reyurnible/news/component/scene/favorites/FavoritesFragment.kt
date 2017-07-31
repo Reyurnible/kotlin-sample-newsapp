@@ -9,8 +9,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.github.reyurnible.news.AppBinder
+import com.github.reyurnible.news.component.scene.articles.ArticlesFragment
+import com.github.reyurnible.news.component.scene.articles.ArticlesPresenter
+import com.github.reyurnible.news.component.scene.articles.ArticlesPresenterImpl
+import com.github.reyurnible.news.component.scene.articles.ArticlesView
 import com.github.reyurnible.news.repository.entity.Article
 import com.github.reyurnible.news.repository.entity.ArticleSource
+import com.github.salomonbrys.kodein.*
+import com.github.salomonbrys.kodein.android.FragmentInjector
 import com.trello.rxlifecycle2.components.support.RxFragment
 import com.trello.rxlifecycle2.kotlin.bindToLifecycle
 import io.reactivex.Observable
@@ -20,7 +27,11 @@ import org.jetbrains.anko.AnkoContext
 /**
  * Favorite Articles Scene
  */
-class FavoritesFragment : RxFragment(), FavoritesView, LifecycleRegistryOwner, FavoritesFragmentComponent.SourcesFragmentComponentListener {
+class FavoritesFragment : RxFragment(),
+        FavoritesView,
+        LifecycleRegistryOwner,
+        FragmentInjector,
+        FavoritesFragmentComponent.SourcesFragmentComponentListener {
     private object Key {
 
     }
@@ -29,18 +40,34 @@ class FavoritesFragment : RxFragment(), FavoritesView, LifecycleRegistryOwner, F
         fun createInstance(): FavoritesFragment = FavoritesFragment()
     }
 
+    // Kodein
+    override val injector: KodeinInjector = KodeinInjector()
+    private val presenter: FavoritesPresenter by injector.instance()
+    // Presenter Datas
     override lateinit var articleList: Observable<List<Article>>
 
     private val registry = LifecycleRegistry(this)
-    private lateinit var presenter: FavoritesPresenter
     private val component: FavoritesFragmentComponent = FavoritesFragmentComponent(this)
 
-    override fun onAttach(context: Context?) {
-        super.onAttach(context)
-        presenter = FavoritesPresenterImpl(
-                view = this,
-                sceneDataHolder = ViewModelProviders.of(this).get(FavoritesPresenter.FavoriteSceneDataHolder::class.java)
+    override fun provideOverridingModule() = Kodein.Module {
+        extend(AppBinder.kodein)
+        bind<FavoritesView>() with instance(this@FavoritesFragment)
+        bind<FavoritesPresenter.FavoriteSceneDataHolder>() with instance(
+                ViewModelProviders.of(this@FavoritesFragment).get(FavoritesPresenter.FavoriteSceneDataHolder::class.java)
         )
+        // Inject Presenter
+        bind<FavoritesPresenter>() with provider {
+            FavoritesPresenterImpl(
+                    view = instance(),
+                    sceneDataHolder = instance(),
+                    newsRepository = instance()
+            )
+        }
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        initializeInjector()
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? =
@@ -57,6 +84,11 @@ class FavoritesFragment : RxFragment(), FavoritesView, LifecycleRegistryOwner, F
                         notifyDataSetChanged()
                     }
                 }
+    }
+
+    override fun onDestroy() {
+        destroyInjector()
+        super.onDestroy()
     }
 
     override fun getLifecycle(): LifecycleRegistry = registry

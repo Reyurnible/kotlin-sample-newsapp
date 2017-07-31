@@ -10,10 +10,9 @@ import com.trello.rxlifecycle2.kotlin.bindToLifecycle
  */
 class FavoritesPresenterImpl(
         private val view: FavoritesView,
-        private val sceneDataHolder: FavoritesPresenter.FavoriteSceneDataHolder
+        private val sceneDataHolder: FavoritesPresenter.FavoriteSceneDataHolder,
+        private val newsRepository: NewsRepository
 ) : RxLifecycleObserver(), FavoritesPresenter {
-
-    private var newsRepository: NewsRepository = AppBinder.bind()
 
     init {
         // Observe parent lifecycle
