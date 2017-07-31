@@ -10,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.github.reyurnible.news.AppBinder
+import com.github.reyurnible.news.component.scene.alertError
 import com.github.reyurnible.news.repository.DomainError
 import com.github.reyurnible.news.repository.entity.ArticleSource
 import com.github.salomonbrys.kodein.*
@@ -19,6 +20,7 @@ import com.trello.rxlifecycle2.kotlin.bindToLifecycle
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import org.jetbrains.anko.AnkoContext
+import org.jetbrains.anko.support.v4.alert
 
 
 /**
@@ -80,7 +82,7 @@ class HomeFragment : RxFragment(), HomeView, FragmentInjector, LifecycleRegistry
     }
 
     override fun showError(error: DomainError) {
-
+        alertError(error)
     }
 
 }

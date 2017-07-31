@@ -10,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.github.reyurnible.news.AppBinder
+import com.github.reyurnible.news.component.scene.alertError
 import com.github.reyurnible.news.component.scene.articles.*
 import com.github.reyurnible.news.extension.start
 import com.github.reyurnible.news.repository.DomainError
@@ -93,11 +94,11 @@ class ArticleSourcesFragment : RxFragment(),
     }
 
     override fun showError(error: DomainError) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        alertError(error)
     }
 
     override fun onScrollReached(count: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
     }
 
     override fun moveToArticles(source: ArticleSource) {

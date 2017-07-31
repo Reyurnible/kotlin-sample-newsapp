@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.github.reyurnible.news.AppBinder
+import com.github.reyurnible.news.component.scene.alertError
 import com.github.reyurnible.news.extension.applyArguments
 import com.github.reyurnible.news.repository.DomainError
 import com.github.reyurnible.news.repository.entity.Article
@@ -100,7 +101,7 @@ class ArticlesFragment : RxFragment(),
     }
 
     override fun showError(error: DomainError) {
-
+        alertError(error)
     }
 
     override fun onScrollReached(count: Int) {

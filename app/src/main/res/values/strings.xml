@@ -5,5 +5,11 @@
     <string name="top_menu_home">HOME</string>
     <string name="top_menu_sources">SOURCES</string>
     <string name="top_menu_favorites">FAVORITES</string>
-
+    <!-- Error Alert -->
+    <string name="error_api_title">APIエラー</string>
+    <string name="error_api_message">リクエスト内容が不正です。</string>
+    <string name="error_network_title">通信エラー</string>
+    <string name="error_network_message">通信中に問題が発生しました。\n電波を確認して再度お試しください。</string>
+    <string name="error_unknown_title">不明なエラー</string>
+    <string name="error_unknown_message">問題が発生しました。</string>
 </resources>

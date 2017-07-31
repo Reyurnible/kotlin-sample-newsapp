@@ -10,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.github.reyurnible.news.AppBinder
+import com.github.reyurnible.news.component.scene.alertError
 import com.github.reyurnible.news.component.scene.articles.ArticlesFragment
 import com.github.reyurnible.news.component.scene.articles.ArticlesPresenter
 import com.github.reyurnible.news.component.scene.articles.ArticlesPresenterImpl
@@ -99,7 +100,7 @@ class FavoritesFragment : RxFragment(),
     }
 
     override fun showError(error: DomainError) {
-
+        alertError(error)
     }
 
     override fun onScrollReached(count: Int) {
