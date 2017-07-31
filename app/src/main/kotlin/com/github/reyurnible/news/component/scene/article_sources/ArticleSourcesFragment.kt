@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import com.github.reyurnible.news.AppBinder
 import com.github.reyurnible.news.component.scene.articles.*
 import com.github.reyurnible.news.extension.start
+import com.github.reyurnible.news.repository.DomainError
 import com.github.reyurnible.news.repository.entity.ArticleSource
 import com.github.salomonbrys.kodein.*
 import com.github.salomonbrys.kodein.android.FragmentInjector
@@ -91,7 +92,7 @@ class ArticleSourcesFragment : RxFragment(),
         lifecycle.addObserver(observer)
     }
 
-    override fun showError() {
+    override fun showError(error: DomainError) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 

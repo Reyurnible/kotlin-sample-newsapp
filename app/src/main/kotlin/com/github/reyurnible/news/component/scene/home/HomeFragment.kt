@@ -10,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.github.reyurnible.news.AppBinder
+import com.github.reyurnible.news.repository.DomainError
 import com.github.reyurnible.news.repository.entity.ArticleSource
 import com.github.salomonbrys.kodein.*
 import com.github.salomonbrys.kodein.android.FragmentInjector
@@ -78,7 +79,7 @@ class HomeFragment : RxFragment(), HomeView, FragmentInjector, LifecycleRegistry
         lifecycle.addObserver(observer)
     }
 
-    override fun showError() {
+    override fun showError(error: DomainError) {
 
     }
 

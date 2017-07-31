@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.github.reyurnible.news.AppBinder
 import com.github.reyurnible.news.extension.applyArguments
+import com.github.reyurnible.news.repository.DomainError
 import com.github.reyurnible.news.repository.entity.Article
 import com.github.salomonbrys.kodein.*
 import com.github.salomonbrys.kodein.android.FragmentInjector
@@ -98,7 +99,7 @@ class ArticlesFragment : RxFragment(),
         lifecycle.addObserver(observer)
     }
 
-    override fun showError() {
+    override fun showError(error: DomainError) {
 
     }
 

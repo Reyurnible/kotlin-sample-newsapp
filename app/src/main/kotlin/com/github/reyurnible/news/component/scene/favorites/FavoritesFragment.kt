@@ -14,6 +14,7 @@ import com.github.reyurnible.news.component.scene.articles.ArticlesFragment
 import com.github.reyurnible.news.component.scene.articles.ArticlesPresenter
 import com.github.reyurnible.news.component.scene.articles.ArticlesPresenterImpl
 import com.github.reyurnible.news.component.scene.articles.ArticlesView
+import com.github.reyurnible.news.repository.DomainError
 import com.github.reyurnible.news.repository.entity.Article
 import com.github.reyurnible.news.repository.entity.ArticleSource
 import com.github.salomonbrys.kodein.*
@@ -97,7 +98,7 @@ class FavoritesFragment : RxFragment(),
         lifecycle.addObserver(observer)
     }
 
-    override fun showError() {
+    override fun showError(error: DomainError) {
 
     }
 
