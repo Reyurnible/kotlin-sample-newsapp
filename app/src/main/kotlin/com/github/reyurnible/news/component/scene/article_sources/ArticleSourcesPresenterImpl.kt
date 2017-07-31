@@ -11,10 +11,9 @@ import com.trello.rxlifecycle2.kotlin.bindToLifecycle
  */
 class ArticleSourcesPresenterImpl(
         private val view: ArticleSourcesView,
-        private val sceneDataHolder: ArticleSourcesPresenter.ArticleSourceSceneDataHolder
+        private val sceneDataHolder: ArticleSourcesPresenter.ArticleSourceSceneDataHolder,
+        private val newsRepository: NewsRepository
 ) : RxLifecycleObserver(), ArticleSourcesPresenter {
-
-    private var newsRepository: NewsRepository = AppBinder.bind()
 
     init {
         // Observe parent lifecycle
