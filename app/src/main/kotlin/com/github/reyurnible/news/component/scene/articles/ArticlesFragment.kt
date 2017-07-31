@@ -77,7 +77,7 @@ class ArticlesFragment : RxFragment(),
                 .bindToLifecycle(this)
                 .subscribe({
                     component.adapter.apply {
-                        articles.addAll(it)
+                        articles = it
                         notifyDataSetChanged()
                     }
                 }, {
