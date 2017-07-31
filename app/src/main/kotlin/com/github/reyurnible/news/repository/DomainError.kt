@@ -9,24 +9,24 @@ import io.reactivex.functions.Function
 import java.net.UnknownHostException
 
 /**
- * Repository Error Types
+ * Domain Error Types
  */
-sealed class RepositoryError : Throwable() {
+sealed class DomainError : Throwable() {
     // Api Error(TODO add status code error handle)
-    data class Api(val statusCode: Int) : RepositoryError()
+    data class Api(val statusCode: Int) : DomainError()
 
     // Network Error
-    object Network : RepositoryError()
+    object Network : DomainError()
 
     // Unknown Error
-    data class Unknown(val original: Throwable) : RepositoryError()
+    data class Unknown(val original: Throwable) : DomainError()
 }
 
-fun parseError(throwable: Throwable): RepositoryError =
+fun parseError(throwable: Throwable): DomainError =
         when (throwable) {
-            is HttpException -> RepositoryError.Api(throwable.code())
-            is UnknownHostException -> RepositoryError.Network
-            else -> RepositoryError.Unknown(throwable)
+            is HttpException -> DomainError.Api(throwable.code())
+            is UnknownHostException -> DomainError.Network
+            else -> DomainError.Unknown(throwable)
         }
 
 inline fun <reified T> Observable<T>.addDomainErrorHandle(): Observable<T> =
