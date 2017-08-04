@@ -36,11 +36,11 @@ class ArticleSourcesFragment : RxFragment(),
     }
 
     override val injector: KodeinInjector = KodeinInjector()
-    private lateinit var presenter: ArticleSourcesPresenter
+    private val registry = LifecycleRegistry(this)
 
     override lateinit var articleSourceList: Observable<List<ArticleSource>>
 
-    private val registry = LifecycleRegistry(this)
+    private val presenter: ArticleSourcesPresenter by injector.instance()
     private val component: ArticleSourcesFragmentComponent = ArticleSourcesFragmentComponent(this)
 
     override fun provideOverridingModule() = Kodein.Module {
@@ -48,13 +48,8 @@ class ArticleSourcesFragment : RxFragment(),
         bind<ArticleSourcesPresenter.ArticleSourceSceneDataHolder>() with instance(
                 ViewModelProviders.of(this@ArticleSourcesFragment).get(ArticleSourcesPresenter.ArticleSourceSceneDataHolder::class.java)
         )
-        // Inject Presenter
         bind<ArticleSourcesPresenter>() with provider {
-            ArticleSourcesPresenterImpl(
-                    view = instance(),
-                    sceneDataHolder = instance(),
-                    newsRepository = instance()
-            )
+            ArticleSourcesPresenterImpl(view = instance(), sceneDataHolder = instance(), newsRepository = instance())
         }
     }
 
