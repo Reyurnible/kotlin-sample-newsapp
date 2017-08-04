@@ -29,24 +29,23 @@ class HomeFragment : RxFragment(),
         HomeView,
         SupportFragmentInjector,
         LifecycleRegistryOwner {
-    private object Key {
-        // Has no argument
-    }
-
     companion object {
         fun createInstance(): HomeFragment = HomeFragment()
     }
 
-    override lateinit var sourceList: Observable<List<ArticleSource>>
-
     override val injector: KodeinInjector = KodeinInjector()
     private val registry = LifecycleRegistry(this)
+
+    override lateinit var sourceList: Observable<List<ArticleSource>>
+
     private val presenter: HomePresenter by injector.instance()
     private val component: HomeFragmentComponent = HomeFragmentComponent()
 
     override fun provideOverridingModule() = Kodein.Module {
         bind<HomeView>() with instance(this@HomeFragment)
-        bind<HomePresenter.HomeSceneDataHolder>() with instance(ViewModelProviders.of(this@HomeFragment).get(HomePresenter.HomeSceneDataHolder::class.java))
+        bind<HomePresenter.HomeSceneDataHolder>() with instance(
+                ViewModelProviders.of(this@HomeFragment).get(HomePresenter.HomeSceneDataHolder::class.java)
+        )
         bind<HomePresenter>() with provider {
             HomePresenterImpl(view = instance(), sceneDataHolder = instance(), newsRepository = instance())
         }
