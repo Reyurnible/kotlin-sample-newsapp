@@ -68,7 +68,6 @@ private fun RequestCreator.loadSettings(
         placeHolder?.let { this.placeholder(placeHolder) }
         error?.let { this.error(error) }
         priority(priority)
-        fit()
     }.into(imageView, object : Callback {
         override fun onSuccess() {
             onSuccessScaleType?.let {
