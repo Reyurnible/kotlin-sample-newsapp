@@ -47,6 +47,8 @@ class ArticleComponent : AnkoComponent<ViewGroup> {
                 ellipsize = TextUtils.TruncateAt.END
                 TextViewCompat.setTextAppearance(this, R.style.TextAppearance_AppCompat_Body1)
             }.lparams(matchParent, wrapContent)
+        }.apply {
+            layoutParams = ViewGroup.LayoutParams(matchParent, wrapContent)
         }
     }
 
