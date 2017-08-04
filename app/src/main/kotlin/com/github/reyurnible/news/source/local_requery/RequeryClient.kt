@@ -28,7 +28,7 @@ object RequeryClient {
             source.setTableCreationMode(TableCreationMode.DROP_CREATE)
         }
         val configuration = source.configuration
-        ReactiveSupport.toReactiveStore(EntityDataStore<Persistable>(configuration))
+        dataStore = ReactiveSupport.toReactiveStore(EntityDataStore<Persistable>(configuration))
     }
 
 }
