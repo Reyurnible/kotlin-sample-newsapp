@@ -1,6 +1,5 @@
 package com.github.reyurnible.news.component.scene.article_sources
 
-import com.github.reyurnible.news.AppBinder
 import com.github.reyurnible.news.component.scene.RxLifecycleObserver
 import com.github.reyurnible.news.repository.entity.ArticleSource
 import com.github.reyurnible.news.repository.NewsRepository

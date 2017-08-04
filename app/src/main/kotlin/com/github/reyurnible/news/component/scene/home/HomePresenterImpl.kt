@@ -1,7 +1,9 @@
 package com.github.reyurnible.news.component.scene.home
 
 import com.github.reyurnible.news.component.scene.RxLifecycleObserver
+import com.github.reyurnible.news.repository.DomainError
 import com.github.reyurnible.news.repository.NewsRepository
+import com.github.reyurnible.news.repository.parseError
 import com.trello.rxlifecycle2.kotlin.bindToLifecycle
 
 /**
@@ -26,7 +28,7 @@ class HomePresenterImpl(
                 .subscribe({
                     sceneDataHolder.sourceList.value = it.toMutableList()
                 }, {
-                    view.showError()
+                    view.showError(parseError(it))
                 })
     }
 

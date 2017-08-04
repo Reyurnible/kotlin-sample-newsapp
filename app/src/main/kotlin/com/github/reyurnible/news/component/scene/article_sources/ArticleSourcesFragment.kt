@@ -4,12 +4,10 @@ import android.arch.lifecycle.LifecycleObserver
 import android.arch.lifecycle.LifecycleRegistry
 import android.arch.lifecycle.LifecycleRegistryOwner
 import android.arch.lifecycle.ViewModelProviders
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.github.reyurnible.news.AppBinder
 import com.github.reyurnible.news.component.scene.alertError
 import com.github.reyurnible.news.component.scene.articles.*
 import com.github.reyurnible.news.extension.start
@@ -17,6 +15,8 @@ import com.github.reyurnible.news.repository.DomainError
 import com.github.reyurnible.news.repository.entity.ArticleSource
 import com.github.salomonbrys.kodein.*
 import com.github.salomonbrys.kodein.android.FragmentInjector
+import com.github.salomonbrys.kodein.android.SupportFragmentInjector
+import com.github.salomonbrys.kodein.android.appKodein
 import com.trello.rxlifecycle2.components.support.RxFragment
 import com.trello.rxlifecycle2.kotlin.bindToLifecycle
 import io.reactivex.Observable
@@ -29,7 +29,7 @@ import org.jetbrains.anko.AnkoContext
 class ArticleSourcesFragment : RxFragment(),
         ArticleSourcesView,
         LifecycleRegistryOwner,
-        FragmentInjector,
+        SupportFragmentInjector,
         ArticleSourcesFragmentComponent.SourcesFragmentComponentListener {
     companion object {
         fun createInstance(): ArticleSourcesFragment = ArticleSourcesFragment()
@@ -44,7 +44,6 @@ class ArticleSourcesFragment : RxFragment(),
     private val component: ArticleSourcesFragmentComponent = ArticleSourcesFragmentComponent(this)
 
     override fun provideOverridingModule() = Kodein.Module {
-        extend(AppBinder.kodein)
         bind<ArticleSourcesView>() with instance(this@ArticleSourcesFragment)
         bind<ArticleSourcesPresenter.ArticleSourceSceneDataHolder>() with instance(
                 ViewModelProviders.of(this@ArticleSourcesFragment).get(ArticleSourcesPresenter.ArticleSourceSceneDataHolder::class.java)

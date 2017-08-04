@@ -8,13 +8,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.github.reyurnible.news.AppBinder
 import com.github.reyurnible.news.component.scene.alertError
 import com.github.reyurnible.news.extension.applyArguments
 import com.github.reyurnible.news.repository.DomainError
 import com.github.reyurnible.news.repository.entity.Article
 import com.github.salomonbrys.kodein.*
 import com.github.salomonbrys.kodein.android.FragmentInjector
+import com.github.salomonbrys.kodein.android.SupportFragmentInjector
+import com.github.salomonbrys.kodein.android.appKodein
 import com.trello.rxlifecycle2.components.support.RxFragment
 import com.trello.rxlifecycle2.kotlin.bindToLifecycle
 import io.reactivex.Observable
@@ -27,7 +28,7 @@ import org.jetbrains.anko.AnkoContext
 class ArticlesFragment : RxFragment(),
         ArticlesView,
         LifecycleRegistryOwner,
-        FragmentInjector,
+        SupportFragmentInjector,
         ArticlesFragmentComponent.ArticlesFragmentComponentListener {
     private object Key {
         const val sourceId = "sourceId"
@@ -49,7 +50,6 @@ class ArticlesFragment : RxFragment(),
     private val component: ArticlesFragmentComponent = ArticlesFragmentComponent()
 
     override fun provideOverridingModule() = Kodein.Module {
-        extend(AppBinder.kodein)
         bind<ArticlesView>() with instance(this@ArticlesFragment)
         bind<ArticlesPresenter.ArticlesSceneDataHolder>() with instance(
                 ViewModelProviders.of(this@ArticlesFragment).get(ArticlesPresenter.ArticlesSceneDataHolder::class.java)

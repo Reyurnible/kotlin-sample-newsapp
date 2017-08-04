@@ -1,6 +1,5 @@
 package com.github.reyurnible.news.component.scene.favorites
 
-import com.github.reyurnible.news.AppBinder
 import com.github.reyurnible.news.component.scene.RxLifecycleObserver
 import com.github.reyurnible.news.repository.NewsRepository
 import com.trello.rxlifecycle2.kotlin.bindToLifecycle

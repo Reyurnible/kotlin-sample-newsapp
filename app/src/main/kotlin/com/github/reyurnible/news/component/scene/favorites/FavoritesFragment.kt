@@ -4,22 +4,17 @@ import android.arch.lifecycle.LifecycleObserver
 import android.arch.lifecycle.LifecycleRegistry
 import android.arch.lifecycle.LifecycleRegistryOwner
 import android.arch.lifecycle.ViewModelProviders
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.github.reyurnible.news.AppBinder
 import com.github.reyurnible.news.component.scene.alertError
-import com.github.reyurnible.news.component.scene.articles.ArticlesFragment
-import com.github.reyurnible.news.component.scene.articles.ArticlesPresenter
-import com.github.reyurnible.news.component.scene.articles.ArticlesPresenterImpl
-import com.github.reyurnible.news.component.scene.articles.ArticlesView
 import com.github.reyurnible.news.repository.DomainError
 import com.github.reyurnible.news.repository.entity.Article
-import com.github.reyurnible.news.repository.entity.ArticleSource
 import com.github.salomonbrys.kodein.*
 import com.github.salomonbrys.kodein.android.FragmentInjector
+import com.github.salomonbrys.kodein.android.SupportFragmentInjector
+import com.github.salomonbrys.kodein.android.appKodein
 import com.trello.rxlifecycle2.components.support.RxFragment
 import com.trello.rxlifecycle2.kotlin.bindToLifecycle
 import io.reactivex.Observable
@@ -32,7 +27,7 @@ import org.jetbrains.anko.AnkoContext
 class FavoritesFragment : RxFragment(),
         FavoritesView,
         LifecycleRegistryOwner,
-        FragmentInjector,
+        SupportFragmentInjector,
         FavoritesFragmentComponent.SourcesFragmentComponentListener {
     private object Key {
 
@@ -52,7 +47,6 @@ class FavoritesFragment : RxFragment(),
     private val component: FavoritesFragmentComponent = FavoritesFragmentComponent(this)
 
     override fun provideOverridingModule() = Kodein.Module {
-        extend(AppBinder.kodein)
         bind<FavoritesView>() with instance(this@FavoritesFragment)
         bind<FavoritesPresenter.FavoriteSceneDataHolder>() with instance(
                 ViewModelProviders.of(this@FavoritesFragment).get(FavoritesPresenter.FavoriteSceneDataHolder::class.java)

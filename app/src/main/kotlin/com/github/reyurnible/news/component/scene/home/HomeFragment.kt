@@ -5,28 +5,30 @@ import android.arch.lifecycle.LifecycleRegistry
 import android.arch.lifecycle.LifecycleRegistryOwner
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.github.reyurnible.news.AppBinder
 import com.github.reyurnible.news.component.scene.alertError
 import com.github.reyurnible.news.repository.DomainError
 import com.github.reyurnible.news.repository.entity.ArticleSource
 import com.github.salomonbrys.kodein.*
 import com.github.salomonbrys.kodein.android.FragmentInjector
+import com.github.salomonbrys.kodein.android.SupportFragmentInjector
+import com.github.salomonbrys.kodein.android.appKodein
 import com.trello.rxlifecycle2.components.support.RxFragment
 import com.trello.rxlifecycle2.kotlin.bindToLifecycle
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import org.jetbrains.anko.AnkoContext
-import org.jetbrains.anko.support.v4.alert
 
 
 /**
  * Home Scene
  */
-class HomeFragment : RxFragment(), HomeView, FragmentInjector, LifecycleRegistryOwner {
+class HomeFragment : RxFragment(),
+        HomeView,
+        SupportFragmentInjector,
+        LifecycleRegistryOwner {
     private object Key {
         // Has no argument
     }
@@ -43,7 +45,6 @@ class HomeFragment : RxFragment(), HomeView, FragmentInjector, LifecycleRegistry
     private val component: HomeFragmentComponent = HomeFragmentComponent()
 
     override fun provideOverridingModule() = Kodein.Module {
-        extend(AppBinder.kodein)
         bind<HomeView>() with instance(this@HomeFragment)
         bind<HomePresenter.HomeSceneDataHolder>() with instance(ViewModelProviders.of(this@HomeFragment).get(HomePresenter.HomeSceneDataHolder::class.java))
         bind<HomePresenter>() with provider {

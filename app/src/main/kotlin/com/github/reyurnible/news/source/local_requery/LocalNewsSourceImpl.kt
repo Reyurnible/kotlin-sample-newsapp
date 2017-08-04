@@ -2,7 +2,7 @@ package com.github.reyurnible.news.source.local_requery
 
 import com.github.reyurnible.news.repository.entity.Article
 import com.github.reyurnible.news.source.LocalNewsSource
-import com.github.reyurnible.news.source.local_requery.dao.ArticleDAOEntity
+import com.github.reyurnible.news.source.local_requery.dao.ArticleEntity
 import io.reactivex.Completable
 import io.reactivex.Single
 import com.github.reyurnible.news.source.local_requery.dao.Article as LocalArticle
@@ -23,7 +23,7 @@ class LocalNewsSourceImpl : LocalNewsSource {
             RequeryClient.dataStore.delete(article.toDao())
 
     private fun Article.toDao(): LocalArticle =
-            ArticleDAOEntity().also { dao ->
+            ArticleEntity().also { dao ->
                 dao.title = title
                 dao.author = author
                 dao.description = description
