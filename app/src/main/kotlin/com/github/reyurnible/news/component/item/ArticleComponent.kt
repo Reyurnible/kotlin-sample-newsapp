@@ -11,6 +11,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import com.github.reyurnible.news.R
 import com.github.reyurnible.news.extension.load
+import com.github.reyurnible.news.extension.toVisible
 import com.github.reyurnible.news.repository.entity.Article
 import org.jetbrains.anko.*
 
@@ -34,19 +35,23 @@ class ArticleComponent : AnkoComponent<ViewGroup> {
             thumbnailImage = imageView {
                 scaleType = ImageView.ScaleType.CENTER_CROP
             }.lparams(matchParent, dip(160))
-            titleText = textView {
-                TextViewCompat.setTextAppearance(this, R.style.TextAppearance_AppCompat_Title)
-            }.lparams(matchParent, wrapContent)
-            authorText = textView {
-                TextViewCompat.setTextAppearance(this, R.style.TextAppearance_AppCompat_Medium)
-            }.lparams(wrapContent, wrapContent) {
-                gravity = GravityCompat.END
+            verticalLayout {
+                padding = resources.getDimensionPixelOffset(R.dimen.margin_x2_0)
+
+                titleText = textView {
+                    TextViewCompat.setTextAppearance(this, R.style.TextAppearance_AppCompat_Title)
+                }.lparams(matchParent, wrapContent)
+                authorText = textView {
+                    TextViewCompat.setTextAppearance(this, R.style.TextAppearance_AppCompat_Medium)
+                }.lparams(wrapContent, wrapContent) {
+                    gravity = GravityCompat.END
+                }
+                descriptionText = textView {
+                    maxLines = 3
+                    ellipsize = TextUtils.TruncateAt.END
+                    TextViewCompat.setTextAppearance(this, R.style.TextAppearance_AppCompat_Body1)
+                }.lparams(matchParent, wrapContent)
             }
-            descriptionText = textView {
-                maxLines = 3
-                ellipsize = TextUtils.TruncateAt.END
-                TextViewCompat.setTextAppearance(this, R.style.TextAppearance_AppCompat_Body1)
-            }.lparams(matchParent, wrapContent)
         }.apply {
             layoutParams = ViewGroup.LayoutParams(matchParent, wrapContent)
         }
@@ -55,8 +60,11 @@ class ArticleComponent : AnkoComponent<ViewGroup> {
     private fun bind(article: Article) {
         thumbnailImage.load(article.urlToImage)
         titleText.text = article.title
+        authorText.apply {
+            text = article.author
+            visibility = article.author.isNullOrBlank().not().toVisible(View.GONE)
+        }
         descriptionText.text = article.description
-        authorText.text = article.author
     }
 
 }
