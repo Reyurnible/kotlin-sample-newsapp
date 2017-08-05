@@ -14,6 +14,8 @@ class NewsRepositoryImpl(
         private val localNewsSource: LocalNewsSource,
         private val remoteNewsSource: RemoteNewsSource
 ) : NewsRepository {
+    private var sourcesCache: List<ArticleSource>? = null
+
     override fun getArticles(source: String, sortBy: String?): Single<List<Article>> =
             remoteNewsSource.getArticles(source, sortBy)
                     .addDomainErrorHandle()
@@ -23,6 +25,11 @@ class NewsRepositoryImpl(
                     .addDomainErrorHandle()
 
     override fun getSources(category: String?, language: String?, country: String?): Single<List<ArticleSource>> =
-            remoteNewsSource.getSources(category, language, country)
-                    .addDomainErrorHandle()
+            sourcesCache?.let {
+                Single.just(it)
+            } ?: let {
+                remoteNewsSource.getSources(category, language, country)
+                        .addDomainErrorHandle()
+                        .doOnSuccess { sourcesCache = it }
+            }
 }
