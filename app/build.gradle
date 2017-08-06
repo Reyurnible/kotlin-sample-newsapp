@@ -25,6 +25,7 @@ android {
     }
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
+        test.java.srcDirs += 'src/test/kotlin'
     }
     kapt {
         generateStubs = true
@@ -91,6 +92,9 @@ dependencies {
     compile 'com.jakewharton.picasso:picasso2-okhttp3-downloader:1.0.2'
     // Test
     testCompile 'junit:junit:4.12'
+    testCompile "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
+    testCompile "org.jetbrains.kotlin:kotlin-test-junit:$kotlinVersion"
+    testCompile "org.mockito:mockito-core:1.+"
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
@@ -105,7 +109,7 @@ def loadSecretProperties() {
     } else {
         // Set Dummy Properties for Build
         // Check your key, or go to https://newsapi.org to create a free API key.
-        props['NEWS_API_KEY']='dummy'
+        props['NEWS_API_KEY'] = 'dummy'
     }
     return props
 }
