@@ -10,13 +10,10 @@ import android.view.View
 import android.view.ViewGroup
 import com.github.reyurnible.news.component.scene.alertError
 import com.github.reyurnible.news.component.scene.articles.*
-import com.github.reyurnible.news.extension.start
 import com.github.reyurnible.news.repository.DomainError
 import com.github.reyurnible.news.repository.entity.ArticleSource
 import com.github.salomonbrys.kodein.*
-import com.github.salomonbrys.kodein.android.FragmentInjector
 import com.github.salomonbrys.kodein.android.SupportFragmentInjector
-import com.github.salomonbrys.kodein.android.appKodein
 import com.trello.rxlifecycle2.components.support.RxFragment
 import com.trello.rxlifecycle2.kotlin.bindToLifecycle
 import io.reactivex.Observable
@@ -96,7 +93,7 @@ class ArticleSourcesFragment : RxFragment(),
     }
 
     override fun moveToArticles(source: ArticleSource) {
-        ArticlesActivity.createIntent(activity, sourceId = source.id).start(activity)
+        startActivity(ArticlesActivity.createIntent(activity, source.id))
     }
 
 }

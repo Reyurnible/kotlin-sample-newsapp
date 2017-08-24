@@ -7,6 +7,7 @@ import com.github.reyurnible.news.extension.setContentFragment
 import com.github.salomonbrys.kodein.KodeinInjector
 import com.github.salomonbrys.kodein.android.AppCompatActivityInjector
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity
+import org.jetbrains.anko.intentFor
 import org.jetbrains.anko.setContentView
 
 /**
@@ -18,9 +19,8 @@ class ArticlesActivity : RxAppCompatActivity(), AppCompatActivityInjector {
     }
 
     companion object {
-        fun createIntent(context: Context, sourceId: String): Intent = Intent(context, ArticlesActivity::class.java).apply {
-            putExtra(Key.sourceId, sourceId)
-        }
+        fun createIntent(context: Context, sourceId: String): Intent =
+                context.intentFor<ArticlesActivity>(Key.sourceId to sourceId)
     }
 
     override val injector: KodeinInjector = KodeinInjector()

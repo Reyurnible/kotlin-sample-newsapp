@@ -3,17 +3,15 @@ package com.github.reyurnible.news.component.scene.top
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import com.github.reyurnible.news.NewsApplication
 import com.github.reyurnible.news.R
 import com.github.reyurnible.news.component.scene.article_sources.ArticleSourcesFragment
 import com.github.reyurnible.news.component.scene.favorites.FavoritesFragment
 import com.github.reyurnible.news.component.scene.home.HomeFragment
 import com.github.reyurnible.news.extension.setContentFragment
 import com.github.salomonbrys.kodein.*
-import com.github.salomonbrys.kodein.android.ActivityInjector
 import com.github.salomonbrys.kodein.android.AppCompatActivityInjector
-import com.github.salomonbrys.kodein.android.appKodein
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity
+import org.jetbrains.anko.intentFor
 import org.jetbrains.anko.setContentView
 
 class TopActivity : RxAppCompatActivity(), TopView, AppCompatActivityInjector {
@@ -22,7 +20,8 @@ class TopActivity : RxAppCompatActivity(), TopView, AppCompatActivityInjector {
     }
 
     companion object {
-        fun createIntent(context: Context): Intent = Intent(context, TopActivity::class.java)
+        fun createIntent(context: Context): Intent =
+                context.intentFor<TopActivity>()
     }
 
     override val injector: KodeinInjector = KodeinInjector()
