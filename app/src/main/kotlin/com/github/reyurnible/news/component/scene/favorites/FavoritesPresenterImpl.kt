@@ -1,7 +1,10 @@
 package com.github.reyurnible.news.component.scene.favorites
 
+import android.arch.lifecycle.ViewModel
 import com.github.reyurnible.news.component.scene.RxLifecycleObserver
+import com.github.reyurnible.news.extension.Variable
 import com.github.reyurnible.news.repository.NewsRepository
+import com.github.reyurnible.news.repository.entity.Article
 import com.trello.rxlifecycle2.kotlin.bindToLifecycle
 
 /**
@@ -9,7 +12,7 @@ import com.trello.rxlifecycle2.kotlin.bindToLifecycle
  */
 class FavoritesPresenterImpl(
         private val view: FavoritesView,
-        private val sceneDataHolder: FavoritesPresenter.FavoriteSceneDataHolder,
+        private val sceneDataHolder: FavoritesPresenter.DataHolder,
         private val newsRepository: NewsRepository
 ) : RxLifecycleObserver(), FavoritesPresenter {
 
@@ -28,6 +31,10 @@ class FavoritesPresenterImpl(
                 }, {
 
                 })
+    }
+
+    class DataHolderImpl : ViewModel(), FavoritesPresenter.DataHolder {
+        override val articleList: Variable<MutableList<Article>> = Variable.createDefault(mutableListOf())
     }
 
 }

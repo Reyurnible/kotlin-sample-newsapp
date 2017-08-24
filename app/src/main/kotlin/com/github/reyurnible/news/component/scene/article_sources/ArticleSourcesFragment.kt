@@ -9,7 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.github.reyurnible.news.component.scene.alertError
-import com.github.reyurnible.news.component.scene.articles.*
+import com.github.reyurnible.news.component.scene.articles.ArticlesActivity
 import com.github.reyurnible.news.repository.DomainError
 import com.github.reyurnible.news.repository.entity.ArticleSource
 import com.github.salomonbrys.kodein.*
@@ -42,8 +42,8 @@ class ArticleSourcesFragment : RxFragment(),
 
     override fun provideOverridingModule() = Kodein.Module {
         bind<ArticleSourcesView>() with instance(this@ArticleSourcesFragment)
-        bind<ArticleSourcesPresenter.ArticleSourceSceneDataHolder>() with instance(
-                ViewModelProviders.of(this@ArticleSourcesFragment).get(ArticleSourcesPresenter.ArticleSourceSceneDataHolder::class.java)
+        bind<ArticleSourcesPresenter.DataHolder>() with instance(
+                ViewModelProviders.of(this@ArticleSourcesFragment).get(ArticleSourcesPresenterImpl.DataHolderImpl::class.java)
         )
         bind<ArticleSourcesPresenter>() with provider {
             ArticleSourcesPresenterImpl(view = instance(), sceneDataHolder = instance(), newsRepository = instance())

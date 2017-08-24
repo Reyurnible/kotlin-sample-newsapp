@@ -34,7 +34,7 @@ class HomePresenterImpl(
                 })
     }
 
-    class DataHolderImpl : HomePresenter.DataHolder, ViewModel() {
+    class DataHolderImpl : ViewModel(), HomePresenter.DataHolder {
         override val sourceList: Variable<MutableList<ArticleSource>> = Variable.createDefault(mutableListOf())
     }
 

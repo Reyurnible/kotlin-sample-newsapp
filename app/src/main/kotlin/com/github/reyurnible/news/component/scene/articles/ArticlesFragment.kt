@@ -13,9 +13,7 @@ import com.github.reyurnible.news.extension.applyArguments
 import com.github.reyurnible.news.repository.DomainError
 import com.github.reyurnible.news.repository.entity.Article
 import com.github.salomonbrys.kodein.*
-import com.github.salomonbrys.kodein.android.FragmentInjector
 import com.github.salomonbrys.kodein.android.SupportFragmentInjector
-import com.github.salomonbrys.kodein.android.appKodein
 import com.trello.rxlifecycle2.components.support.RxFragment
 import com.trello.rxlifecycle2.kotlin.bindToLifecycle
 import io.reactivex.Observable
@@ -51,8 +49,8 @@ class ArticlesFragment : RxFragment(),
 
     override fun provideOverridingModule() = Kodein.Module {
         bind<ArticlesView>() with instance(this@ArticlesFragment)
-        bind<ArticlesPresenter.ArticlesSceneDataHolder>() with instance(
-                ViewModelProviders.of(this@ArticlesFragment).get(ArticlesPresenter.ArticlesSceneDataHolder::class.java)
+        bind<ArticlesPresenter.DataHolder>() with instance(
+                ViewModelProviders.of(this@ArticlesFragment).get(ArticlesPresenterImpl.DataHolderImpl::class.java)
         )
         bind<String>(tag = Key.sourceId) with instance(arguments.getString(Key.sourceId))
         // Inject Presenter

@@ -1,10 +1,9 @@
 package com.github.reyurnible.news.component.scene.article_sources
 
 import android.arch.lifecycle.LifecycleObserver
-import android.arch.lifecycle.ViewModel
-import com.github.reyurnible.news.repository.entity.ArticleSource
 import com.github.reyurnible.news.extension.Variable
 import com.github.reyurnible.news.repository.DomainError
+import com.github.reyurnible.news.repository.entity.ArticleSource
 import io.reactivex.Observable
 
 /**
@@ -14,9 +13,9 @@ interface ArticleSourcesPresenter {
     fun onClickSource(source: ArticleSource)
 
     // Survive Scene Data
-    data class ArticleSourceSceneDataHolder(
-            val articleSourceList: Variable<MutableList<ArticleSource>> = Variable.createDefault(mutableListOf())
-    ) : ViewModel()
+    interface DataHolder {
+        val articleSourceList: Variable<MutableList<ArticleSource>>
+    }
 }
 
 interface ArticleSourcesView {
