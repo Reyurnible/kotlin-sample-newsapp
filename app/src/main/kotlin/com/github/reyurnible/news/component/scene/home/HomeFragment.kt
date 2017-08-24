@@ -12,9 +12,7 @@ import com.github.reyurnible.news.component.scene.alertError
 import com.github.reyurnible.news.repository.DomainError
 import com.github.reyurnible.news.repository.entity.ArticleSource
 import com.github.salomonbrys.kodein.*
-import com.github.salomonbrys.kodein.android.FragmentInjector
 import com.github.salomonbrys.kodein.android.SupportFragmentInjector
-import com.github.salomonbrys.kodein.android.appKodein
 import com.trello.rxlifecycle2.components.support.RxFragment
 import com.trello.rxlifecycle2.kotlin.bindToLifecycle
 import io.reactivex.Observable
@@ -43,8 +41,8 @@ class HomeFragment : RxFragment(),
 
     override fun provideOverridingModule() = Kodein.Module {
         bind<HomeView>() with instance(this@HomeFragment)
-        bind<HomePresenter.HomeSceneDataHolder>() with instance(
-                ViewModelProviders.of(this@HomeFragment).get(HomePresenter.HomeSceneDataHolder::class.java)
+        bind<HomePresenter.DataHolder>() with instance(
+                ViewModelProviders.of(this@HomeFragment).get(HomePresenterImpl.DataHolderImpl::class.java)
         )
         bind<HomePresenter>() with provider {
             HomePresenterImpl(view = instance(), sceneDataHolder = instance(), newsRepository = instance())
