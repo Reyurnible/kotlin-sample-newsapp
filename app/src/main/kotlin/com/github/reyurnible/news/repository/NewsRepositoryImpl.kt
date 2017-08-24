@@ -4,7 +4,7 @@ import com.github.reyurnible.news.repository.entity.Article
 import com.github.reyurnible.news.repository.entity.ArticleSource
 import com.github.reyurnible.news.source.LocalNewsSource
 import com.github.reyurnible.news.source.RemoteNewsSource
-import io.reactivex.Observable
+import io.reactivex.Completable
 import io.reactivex.Single
 
 /**
@@ -22,6 +22,10 @@ class NewsRepositoryImpl(
 
     override fun getFavoriteArticles(): Single<List<Article>> =
             localNewsSource.getFavoriteArticles()
+                    .addDomainErrorHandle()
+
+    override fun addFavoriteArticle(article: Article): Completable =
+            localNewsSource.addFavoriteArticle(article)
                     .addDomainErrorHandle()
 
     override fun getSources(category: String?, language: String?, country: String?): Single<List<ArticleSource>> =

@@ -1,4 +1,4 @@
-package com.github.reyurnible.news.source.local_requery.dao
+package com.github.reyurnible.news.source.local_requery.dto
 
 import android.os.Parcelable
 import io.requery.*

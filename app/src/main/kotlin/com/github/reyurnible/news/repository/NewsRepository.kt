@@ -2,6 +2,7 @@ package com.github.reyurnible.news.repository
 
 import com.github.reyurnible.news.repository.entity.Article
 import com.github.reyurnible.news.repository.entity.ArticleSource
+import io.reactivex.Completable
 import io.reactivex.Single
 
 /**
@@ -13,6 +14,7 @@ interface NewsRepository {
 
     fun getFavoriteArticles(): Single<List<Article>>
 
-    fun getSources(category: String? = null, language: String? = null, country: String? = null): Single<List<ArticleSource>>
+    fun addFavoriteArticle(article: Article): Completable
 
+    fun getSources(category: String? = null, language: String? = null, country: String? = null): Single<List<ArticleSource>>
 }

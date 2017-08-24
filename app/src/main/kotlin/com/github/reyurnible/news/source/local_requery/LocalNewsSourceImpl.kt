@@ -2,10 +2,10 @@ package com.github.reyurnible.news.source.local_requery
 
 import com.github.reyurnible.news.repository.entity.Article
 import com.github.reyurnible.news.source.LocalNewsSource
-import com.github.reyurnible.news.source.local_requery.dao.ArticleEntity
+import com.github.reyurnible.news.source.local_requery.dto.ArticleEntity
 import io.reactivex.Completable
 import io.reactivex.Single
-import com.github.reyurnible.news.source.local_requery.dao.Article as LocalArticle
+import com.github.reyurnible.news.source.local_requery.dto.Article as LocalArticle
 
 class LocalNewsSourceImpl : LocalNewsSource {
 
