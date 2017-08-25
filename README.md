@@ -32,7 +32,7 @@ Using in Presenter LifeCycle binding.
 
 ### Factories (Test model factory in using Kodein)
 
-(Factories)[https://github.com/Reyurnible/kotlin-sample-newsapp/tree/master/app/src/test/java/com/github/reyurnible/news/factory]
+[Factories](https://github.com/Reyurnible/kotlin-sample-newsapp/tree/master/app/src/test/java/com/github/reyurnible/news/factory)
 
 ## LICENSE
 
