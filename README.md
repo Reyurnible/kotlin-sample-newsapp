@@ -18,6 +18,22 @@ This repository is about.
 - AssertJ
 - Mockito
 
+## My Feature Code
+
+### Variable (RxSwift like RxJava BehaviorSubject wrapper)
+
+[Variable](https://github.com/Reyurnible/kotlin-sample-newsapp/blob/master/app/src/main/kotlin/com/github/reyurnible/news/extension/Variable.kt)
+
+### RxLifecycleObserver (LifecycleObserver for RxLifecycle binding)
+
+Using in Presenter LifeCycle binding.
+
+[RxLifecycleObserver](https://github.com/Reyurnible/kotlin-sample-newsapp/blob/master/app/src/main/kotlin/com/github/reyurnible/news/component/scene/RxLifecycleObserver.kt)
+
+### Factories (Test model factory in using Kodein)
+
+(Factories)[https://github.com/Reyurnible/kotlin-sample-newsapp/tree/master/app/src/test/java/com/github/reyurnible/news/factory]
+
 ## LICENSE
 
 Copyright 2017 Shun Hosaka.
