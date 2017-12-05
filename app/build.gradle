@@ -53,6 +53,7 @@ dependencies {
     kapt "android.arch.lifecycle:compiler:$archVersion"
     // Kotlin
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
+    compile "org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinCoroutinesVersion"
     // Kodein
     compile "com.github.salomonbrys.kodein:kodein:$kodeinVersion"
     compile "com.github.salomonbrys.kodein:kodein-android:$kodeinVersion"
