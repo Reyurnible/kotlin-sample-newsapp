@@ -5,9 +5,12 @@ import android.arch.lifecycle.LifecycleRegistry
 import android.arch.lifecycle.LifecycleRegistryOwner
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
+import android.support.v7.util.DiffUtil
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.github.reyurnible.news.component.adapter.RecyclerDiffCallback
 import com.github.reyurnible.news.component.scene.alertError
 import com.github.reyurnible.news.extension.applyArguments
 import com.github.reyurnible.news.repository.DomainError
@@ -15,9 +18,11 @@ import com.github.reyurnible.news.repository.entity.Article
 import com.github.salomonbrys.kodein.*
 import com.github.salomonbrys.kodein.android.SupportFragmentInjector
 import com.trello.rxlifecycle2.components.support.RxFragment
+import com.trello.rxlifecycle2.kotlin.bind
 import com.trello.rxlifecycle2.kotlin.bindToLifecycle
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import org.jetbrains.anko.AnkoContext
 
 /**
@@ -77,14 +82,9 @@ class ArticlesFragment : RxFragment(),
         articleList
                 .observeOn(AndroidSchedulers.mainThread())
                 .bindToLifecycle(this)
-                .subscribe({
-                    component.adapter.apply {
-                        articles = it
-                        notifyDataSetChanged()
-                    }
-                }, {
-                    it.printStackTrace()
-                })
+                .subscribe({ articles ->
+                    component.adapter.articles = articles
+                }, Throwable::printStackTrace)
     }
 
     override fun onDestroy() {
